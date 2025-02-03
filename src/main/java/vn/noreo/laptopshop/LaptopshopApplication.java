@@ -1,13 +1,13 @@
-package vn.noreo.java_spring_laptopshop_final_project_1;
+package vn.noreo.laptopshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class LaptopshopApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(LaptopshopApplication.class, args);
 	}
 
 }
