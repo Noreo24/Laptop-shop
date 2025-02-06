@@ -8,30 +8,39 @@ import org.springframework.web.bind.annotation.RestController;
 import vn.noreo.laptopshop.service.UserService;
 
 // Mô hình MVC
-// @Controller
-// public class UserController {
-
-//     @RequestMapping("/")
-//     public String getHomePage() {
-//         return "Hello from controller";
-//     }
-// }
-
-// Mô hình restful API
-@RestController
+@Controller
 public class UserController {
 
-    // DI: Dependency injection
+    // // DI: Dependency injection
     private UserService userService;
 
-    // Không dùng AutoWired vì không tốt cho test
+    // // Không dùng AutoWired vì không tốt cho test
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    // Gọi qua Model
-    @GetMapping("/")
+    @RequestMapping("/")
     public String getHomePage() {
-        return this.userService.handleHello();
+        String test = this.userService.handleHello();
+        return "hello";
     }
 }
+
+// Mô hình restful API
+// @RestController
+// public class UserController {
+
+// // DI: Dependency injection
+// private UserService userService;
+
+// // Không dùng AutoWired vì không tốt cho test
+// public UserController(UserService userService) {
+// this.userService = userService;
+// }
+
+// // Gọi qua Model
+// @GetMapping("/")
+// public String getHomePage() {
+// return this.userService.handleHello();
+// }
+// }
