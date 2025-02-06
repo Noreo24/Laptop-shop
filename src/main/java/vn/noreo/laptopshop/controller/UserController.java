@@ -2,10 +2,11 @@ package vn.noreo.laptopshop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import vn.noreo.laptopshop.domain.User;
 import vn.noreo.laptopshop.service.UserService;
 
 // Mô hình MVC
@@ -25,6 +26,18 @@ public class UserController {
         String test = this.userService.handleHello();
         model.addAttribute("noreo", test);
         model.addAttribute("tuan", "From Controller with Model");
+        return "hello";
+    }
+
+    @RequestMapping("/admin/user")
+    public String getUserPage(Model model) {
+        model.addAttribute("newUser", new User());
+        return "admin/user/create";
+    }
+
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    public String createUserPage(Model model, @ModelAttribute("newUser") User noreo) {
+        System.out.println("Run here" + noreo);
         return "hello";
     }
 }
