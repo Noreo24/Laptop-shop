@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.repository.UserRepository;
 import vn.noreo.laptopshop.service.UserService;
 
 // Mô hình MVC
@@ -14,17 +15,16 @@ import vn.noreo.laptopshop.service.UserService;
 public class UserController {
 
     // // DI: Dependency injection
-    private UserService userService;
+    private final UserService userService;
 
-    // // Không dùng AutoWired vì không tốt cho test
+    // // Không dùng Autowired vì không tốt cho test
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userService.handleHello();
-        model.addAttribute("noreo", test);
+        model.addAttribute("noreo", "test");
         model.addAttribute("tuan", "From Controller with Model");
         return "hello";
     }
@@ -38,6 +38,7 @@ public class UserController {
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User noreo) {
         System.out.println("Run here" + noreo);
+        this.userService.handleSaveUser(noreo);
         return "hello";
     }
 }
