@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
+                <title>Table user</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,9 +17,9 @@
             </head>
 
             <body>
-                <div class="containe mt-5">
+                <div class="container mt-5">
                     <div class="row">
-                        <div class="col-md-10 col-12 mx-auto">
+                        <div class="col-12 mx-auto">
                             <div class="d-flex justify-content-between">
                                 <h3>Table users</h3>
                                 <a href="/admin/user/create" class="btn btn-primary">Create an user</a>
@@ -35,26 +35,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <a href="" class="btn btn-success">View</a>
-                                            <a href="" class="btn btn-warning">Update</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>
-                                            <a href="" class="btn btn-success">View</a>
-                                            <a href="" class="btn btn-warning">Update</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="user" items="${allUsers}">
+                                        <tr>
+                                            <th>${user.getId()}</th>
+                                            <td>${user.getEmail()}</td>
+                                            <td>${user.getFullName()}</td>
+                                            <td>
+                                                <a href="/admin/user/${user.getId()}" class="btn btn-success">View</a>
+                                                <a href="/admin/user/update/${user.getId()}"
+                                                    class="btn btn-warning mx-2">Update</a>
+                                                <a href="" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
