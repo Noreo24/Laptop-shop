@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.noreo.laptopshop.domain.User;
-import vn.noreo.laptopshop.repository.UserRepository;
 import vn.noreo.laptopshop.service.UserService;
 
 // Mô hình MVC
@@ -77,6 +77,19 @@ public class UserController {
             userUpdated.setPhone(currentUser.getPhone());
             this.userService.handleSaveUser(userUpdated);
         }
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("currentUser", new User());
+        return "admin/user/delete-user";
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String deleteUser(Model model, @ModelAttribute("currentUser") User currentUser) {
+        this.userService.deleteUserById(currentUser.getId());
         return "redirect:/admin/user";
     }
 }
