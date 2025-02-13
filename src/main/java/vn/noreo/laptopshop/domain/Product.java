@@ -1,9 +1,12 @@
 package vn.noreo.laptopshop.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +25,15 @@ public class Product {
     private long sold;
     private String factory;
     private String target;
+
+    /*
+     * - Không cần @OneToMany ngược lại vì không cần biết 1 sản phẩm xuất hiện trong
+     * bao nhiêu OrderDetails
+     * => Quan hệ 1 chiều (unidirectional): Đinh nghĩa chỉ ở 1 model là OrderDetail,
+     * không cần phải định nghĩa bên Product
+     */
+    @OneToMany(mappedBy = "product")
+    List<OrderDetail> orderDetails;
 
     public long getId() {
         return id;
