@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create user</title>
+                <title>User detail ${currentUser.getId()}</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,33 +37,25 @@
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
-                                        <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create an user</h3>
+                                        <div class="col-12 mx-auto">
+                                            <div class="d-flex justify-content-between">
+                                                <h3>User detail with id = ${id}</h3>
+                                            </div>
                                             <hr>
-                                            <form:form method="post" action="/admin/user/create"
-                                                modelAttribute="newUser">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email:</label>
-                                                    <form:input type="email" class="form-control" path="email" />
+                                            <div class="card" style="width: 60%;">
+                                                <div class="card-header">
+                                                    User information
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Password:</label>
-                                                    <form:input type="password" class="form-control" path="password" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phone number:</label>
-                                                    <form:input type="text" class="form-control" path="phone" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Full name:</label>
-                                                    <form:input type="text" class="form-control" path="fullName" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address:</label>
-                                                    <form:input type="text" class="form-control" path="address" />
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Create</button>
-                                            </form:form>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">ID: ${currentUser.getId()}</li>
+                                                    <li class="list-group-item">Email: ${currentUser.getEmail()}</li>
+                                                    <li class="list-group-item">Full name: ${currentUser.getFullName()}
+                                                    </li>
+                                                    <li class="list-group-item">Address: ${currentUser.getAddress()}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="/admin/user" class="btn btn-success mt-3">Back</a>
                                         </div>
                                     </div>
                                 </div>

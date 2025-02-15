@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create user</title>
+                <title>Table user</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,33 +37,39 @@
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
-                                        <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create an user</h3>
+                                        <div class="col-12 mx-auto">
+                                            <div class="d-flex justify-content-between">
+                                                <h3>Table users</h3>
+                                                <a href="/admin/user/create" class="btn btn-primary">Create an user</a>
+                                            </div>
                                             <hr>
-                                            <form:form method="post" action="/admin/user/create"
-                                                modelAttribute="newUser">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Email:</label>
-                                                    <form:input type="email" class="form-control" path="email" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Password:</label>
-                                                    <form:input type="password" class="form-control" path="password" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Phone number:</label>
-                                                    <form:input type="text" class="form-control" path="phone" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Full name:</label>
-                                                    <form:input type="text" class="form-control" path="fullName" />
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Address:</label>
-                                                    <form:input type="text" class="form-control" path="address" />
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Create</button>
-                                            </form:form>
+                                            <table class="table table-hover table-bordered ">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Full Name</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="user" items="${allUsers}">
+                                                        <tr>
+                                                            <th>${user.getId()}</th>
+                                                            <td>${user.getEmail()}</td>
+                                                            <td>${user.getFullName()}</td>
+                                                            <td>
+                                                                <a href="/admin/user/${user.getId()}"
+                                                                    class="btn btn-success">View</a>
+                                                                <a href="/admin/user/update/${user.getId()}"
+                                                                    class="btn btn-warning mx-2">Update</a>
+                                                                <a href="/admin/user/delete/${user.getId()}"
+                                                                    class="btn btn-danger">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

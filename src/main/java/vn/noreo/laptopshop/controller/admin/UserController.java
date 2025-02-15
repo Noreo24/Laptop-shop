@@ -1,4 +1,4 @@
-package vn.noreo.laptopshop.controller;
+package vn.noreo.laptopshop.controller.admin;
 
 import java.util.List;
 
@@ -39,14 +39,14 @@ public class UserController {
     public String getAllUserPage(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
-        return "admin/user/table-user";
+        return "admin/user/view-all-user";
     }
 
     @RequestMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {
         User currentUser = userService.getUserById(id);
         model.addAttribute("currentUser", currentUser);
-        return "admin/user/user-detail";
+        return "admin/user/view-user-detail";
     }
 
     @RequestMapping("/admin/user/create")
