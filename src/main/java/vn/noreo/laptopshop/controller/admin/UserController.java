@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.service.UploadService;
 import vn.noreo.laptopshop.service.UserService;
 
 // Mô hình MVC
@@ -20,10 +22,12 @@ public class UserController {
 
     // // DI: Dependency injection
     private final UserService userService;
+    private final UploadService uploadService;
 
     // // Không dùng Autowired vì không tốt cho test
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UploadService uploadService) {
         this.userService = userService;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/")
@@ -49,15 +53,21 @@ public class UserController {
         return "admin/user/view-user-detail";
     }
 
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create-user";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUser(Model model, @ModelAttribute("newUser") User newUser) {
-        this.userService.handleSaveUser(newUser);
+    /*
+     * @RequestParam lấy ở ô input có name = avatarFile trong
+     * create-user.jsp
+     */
+    @PostMapping(value = "/admin/user/create")
+    public String createUser(Model model, @ModelAttribute("newUser") User newUser,
+            @RequestParam("avatarFile") MultipartFile file) {
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        // this.userService.handleSaveUser(newUser);
         return "redirect:/admin/user";
     }
 
