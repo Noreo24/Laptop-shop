@@ -51,6 +51,8 @@
                                                     <li class="list-group-item">Email: ${currentUser.getEmail()}</li>
                                                     <li class="list-group-item">Full name: ${currentUser.getFullName()}
                                                     </li>
+                                                    <li class="list-group-item">Role: ${currentUser.getRole().getName()}
+                                                    </li>
                                                     <li class="list-group-item">Address: ${currentUser.getAddress()}
                                                     </li>
                                                 </ul>
