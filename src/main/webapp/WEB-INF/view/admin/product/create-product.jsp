@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Update user</title>
+                <title>Create product</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,11 +18,11 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
-                        const avatarFile = $("#avatarFile");
+                        const avatarFile = $("#imageFile");
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
-                            $("#avatarPreview").attr("src", imgURL);
-                            $("#avatarPreview").css({ "display": "block" });
+                            $("#imagePreview").attr("src", imgURL);
+                            $("#imagePreview").css({ "display": "block" });
                         });
                     });
                 </script>
@@ -41,57 +41,65 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
+                                <h1 class="mt-4">Manage products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Update user</h3>
+                                            <h3>Create a product</h3>
                                             <hr>
-                                            <form:form method="post" action="/admin/user/update"
-                                                modelAttribute="currentUser" class="row" enctype="multipart/form-data">
-                                                <div class="mb-3" style="display: none;">
-                                                    <label class="form-label">ID: </label>
-                                                    <form:input type="text" class="form-control" path="id" />
+                                            <form:form method="post" action="/admin/product/create"
+                                                modelAttribute="newProduct" class="row" enctype="multipart/form-data">
+                                                <div class="col-12 col-md-6 mb-3">
+                                                    <label class="form-label">Name:</label>
+                                                    <form:input type="text" class="form-control" path="name" />
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Email:</label>
-                                                    <form:input type="email" class="form-control" path="email"
-                                                        disabled="true" />
+                                                    <label class="form-label">Price:</label>
+                                                    <form:input type="text" class="form-control" path="price" />
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label class="form-label">Detail description:</label>
+                                                    <form:textarea class="form-control" path="detailDesc" />
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Phone number:</label>
-                                                    <form:input type="text" class="form-control" path="phone" />
+                                                    <label class="form-label">Short description:</label>
+                                                    <form:input type="text" class="form-control" path="shortDesc" />
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Full name:</label>
-                                                    <form:input type="text" class="form-control" path="fullName" />
+                                                    <label class="form-label">Quantity:</label>
+                                                    <form:input type="number" class="form-control" path="quantity" />
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Address:</label>
-                                                    <form:input type="text" class="form-control" path="address" />
-                                                </div>
-                                                <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Role:</label>
-                                                    <form:select class="form-select" path="role.name">
-                                                        <form:option value="admin">Admin</form:option>
-                                                        <form:option value="user">User</form:option>
+                                                    <label class="form-label">Factory:</label>
+                                                    <form:select class="form-select" path="factory">
+                                                        <form:option value="mac">MAC Os</form:option>
+                                                        <form:option value="dell">DELL</form:option>
+                                                        <form:option value="lenovo">Lenovo</form:option>
                                                     </form:select>
                                                 </div>
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label for="avatarFile" class="form-label">Avatar:</label>
-                                                    <input type="file" class="form-control" id="avatarFile"
-                                                        accept=".png, .jpg, .jpeg" name="updateAvatarFile" />
+                                                    <label class="form-label">Target:</label>
+                                                    <form:select class="form-select" path="target">
+                                                        <form:option value="game">Gaming</form:option>
+                                                        <form:option value="svvp">Sinh viên - văn phòng</form:option>
+                                                        <form:option value="design">Thiết kế đồ hoạ</form:option>
+                                                    </form:select>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-3">
+                                                    <label for="imageFile" class="form-label">Image:</label>
+                                                    <input type="file" class="form-control" id="imageFile"
+                                                        accept=".png, .jpg, .jpeg" name="imageFile" />
                                                 </div>
                                                 <div class="col-12 mb-3">
-                                                    <img style="max-height: 250px; display: none;" alt="Avatar preview"
-                                                        id="avatarPreview">
+                                                    <img style="max-height: 250px; display: none;"
+                                                        alt="Product's image preview" id="imagePreview">
                                                 </div>
                                                 <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-warning">Update</button>
+                                                    <button type="submit" class="btn btn-primary">Create</button>
                                                 </div>
                                             </form:form>
                                         </div>
