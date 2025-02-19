@@ -2,8 +2,6 @@ package vn.noreo.laptopshop.domain;
 
 import java.util.List;
 
-import org.springframework.lang.NonNull;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,16 +24,17 @@ public class User {
     private long id;
 
     @NotNull
-    @Email
+    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
     @NotNull
-    @Min(3)
+    @Size(min = 2, message = "Password phải có tối thiểu 2 ký tự!")
     private String password;
 
     @NotNull
-    @Min(2)
+    @Size(min = 3, message = "Fullname phải có tối thiểu 3 ký tự!")
     private String fullName;
+
     private String address;
     private String phone;
     private String avatar;

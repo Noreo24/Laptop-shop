@@ -21,21 +21,28 @@ public class UploadService {
 
     public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
 
+        if (file.isEmpty())
+            return "";
+
         String rootPath = this.servletContext.getRealPath("/resources/images");
         String finalFileName = "";
+
         try {
             byte[] bytes = file.getBytes();
 
             File dir = new File(rootPath + File.separator + targetFolder);
             if (!dir.exists())
                 dir.mkdirs();
+
             // Create the file on server
             finalFileName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
             File serverFile = new File(dir.getAbsolutePath() + File.separator + finalFileName);
+
             BufferedOutputStream stream = new BufferedOutputStream(
                     new FileOutputStream(serverFile));
             stream.write(bytes);
             stream.close();
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

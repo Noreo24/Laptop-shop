@@ -71,19 +71,27 @@ public class UserController {
      * create-user.jsp
      */
     @PostMapping(value = "/admin/user/create")
-    public String createUser(Model model, @ModelAttribute("newUser") @Valid User newUser, BindingResult bindingResult,
+    public String createUser(Model model, @ModelAttribute("newUser") @Valid User newUser,
+            BindingResult newUserBindingResult,
             @RequestParam("avatarFile") MultipartFile file) {
-        List<FieldError> errors = bindingResult.getFieldErrors();
+
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(">>>>>>>" + error.getObjectName() + " - " + error.getDefaultMessage());
+            System.out.println(">>>>>>>" + error.getField() + " - " + error.getDefaultMessage());
         }
+
         // Validate
+        if (newUserBindingResult.hasErrors()) {
+            return "/admin/user/create-user";
+        }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
+
         newUser.setAvatar(avatar);
         newUser.setPassword(hashPassword);
         newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
+
         this.userService.handleSaveUser(newUser);
         return "redirect:/admin/user";
     }
