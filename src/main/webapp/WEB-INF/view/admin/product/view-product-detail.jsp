@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>User detail ${currentUser.getId()}</title>
+                <title>Product detail ${currentProduct.getId()}</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,37 +30,52 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
+                                <h1 class="mt-4">Manage products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>User detail with id = ${id}</h3>
+                                                <h3>Product detail with id = ${id}</h3>
                                             </div>
                                             <hr>
                                             <div class="card" style="width: 60%;">
                                                 <img class="card-img-top"
-                                                    src="/images/avatar/${currentUser.getAvatar()}"
+                                                    src="/images/product/${currentProduct.getImage()}"
                                                     alt="Card image cap">
                                                 <div class="card-header">
-                                                    User information
+                                                    Product information
                                                 </div>
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">ID: ${currentUser.getId()}</li>
-                                                    <li class="list-group-item">Email: ${currentUser.getEmail()}</li>
-                                                    <li class="list-group-item">Full name: ${currentUser.getFullName()}
+                                                    <li class="list-group-item">ID: ${currentProduct.getId()}</li>
+                                                    <li class="list-group-item">Name: ${currentProduct.getName()}</li>
+                                                    <li class="list-group-item">Price:
+                                                        ${currentProduct.getPrice()}
                                                     </li>
-                                                    <li class="list-group-item">Role: ${currentUser.getRole().getName()}
+                                                    <li class="list-group-item">Detail description:
+                                                        ${currentProduct.getDetailDesc()}
                                                     </li>
-                                                    <li class="list-group-item">Address: ${currentUser.getAddress()}
+                                                    <li class="list-group-item">Short description:
+                                                        ${currentProduct.getShortDesc()}
+                                                    </li>
+                                                    <li class="list-group-item">Quantity:
+                                                        ${currentProduct.getQuantity()}
+                                                    </li>
+                                                    <li class="list-group-item">Sold:
+                                                        ${currentProduct.getSold()}
+                                                    </li>
+                                                    <li class="list-group-item">Factory:
+                                                        ${currentProduct.getFactory()}
+                                                    </li>
+                                                    <li class="list-group-item">Target:
+                                                        ${currentProduct.getTarget()}
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <a href="/admin/user" class="btn btn-success mt-3">Back</a>
+                                            <a href="/admin/product" class="btn btn-success mt-3">Back</a>
                                         </div>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>User detail ${currentUser.getId()}</title>
+                <title>Delete product ${id}</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,37 +30,30 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
+                                <h1 class="mt-4">Manage products</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
+                                    <li class="breadcrumb-item active">Products</li>
                                 </ol>
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>User detail with id = ${id}</h3>
+                                                <h3>Delete product with id = ${id}</h3>
                                             </div>
                                             <hr>
-                                            <div class="card" style="width: 60%;">
-                                                <img class="card-img-top"
-                                                    src="/images/avatar/${currentUser.getAvatar()}"
-                                                    alt="Card image cap">
-                                                <div class="card-header">
-                                                    User information
-                                                </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">ID: ${currentUser.getId()}</li>
-                                                    <li class="list-group-item">Email: ${currentUser.getEmail()}</li>
-                                                    <li class="list-group-item">Full name: ${currentUser.getFullName()}
-                                                    </li>
-                                                    <li class="list-group-item">Role: ${currentUser.getRole().getName()}
-                                                    </li>
-                                                    <li class="list-group-item">Address: ${currentUser.getAddress()}
-                                                    </li>
-                                                </ul>
+                                            <div class="alert alert-danger" role="alert">
+                                                Are you sure to delete this product?
                                             </div>
-                                            <a href="/admin/user" class="btn btn-success mt-3">Back</a>
+                                            <form:form method="post" action="/admin/product/delete"
+                                                modelAttribute="currentProduct">
+                                                <div class="mb-3" style="display: none;">
+                                                    <label class="form-label">ID: </label>
+                                                    <form:input type="text" class="form-control" path="id"
+                                                        value="${id}" />
+                                                </div>
+                                                <button class="btn btn-danger">Confirm</button>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </div>

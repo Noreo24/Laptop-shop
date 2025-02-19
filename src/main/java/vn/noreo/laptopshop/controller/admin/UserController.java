@@ -46,14 +46,14 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping("/admin/user")
+    @GetMapping("/admin/user")
     public String getAllUserPage(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
         return "admin/user/view-all-user";
     }
 
-    @RequestMapping("/admin/user/{id}")
+    @GetMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {
         User currentUser = userService.getUserById(id);
         model.addAttribute("currentUser", currentUser);
@@ -75,11 +75,6 @@ public class UserController {
             BindingResult newUserBindingResult,
             @RequestParam("avatarFile") MultipartFile file) {
 
-        List<FieldError> errors = newUserBindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(">>>>>>>" + error.getField() + " - " + error.getDefaultMessage());
-        }
-
         // Validate
         if (newUserBindingResult.hasErrors()) {
             return "/admin/user/create-user";
@@ -96,7 +91,7 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @RequestMapping("/admin/user/update/{id}")
+    @GetMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         User currentUser = userService.getUserById(id);
         model.addAttribute("currentUser", currentUser);
@@ -104,15 +99,24 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String updateUser(Model model, @ModelAttribute("currentUser") User currentUser,
+    public String updateUser(Model model, @ModelAttribute("currentUser") @Valid User currentUser,
+            BindingResult currentUserBindingResult,
             @RequestParam("updateAvatarFile") MultipartFile file) {
+
+        if (currentUserBindingResult.hasErrors()) {
+            return "/admin/user/update-user";
+        }
+
         User userUpdated = this.userService.getUserById(currentUser.getId());
-        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         if (userUpdated != null) {
+            if (!file.isEmpty()) {
+                String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+                userUpdated.setAvatar(avatar);
+            }
+
             userUpdated.setAddress(currentUser.getAddress());
             userUpdated.setFullName(currentUser.getFullName());
             userUpdated.setPhone(currentUser.getPhone());
-            userUpdated.setAvatar(avatar);
             userUpdated.setRole(this.userService.getRoleByName(currentUser.getRole().getName()));
             this.userService.handleSaveUser(userUpdated);
         }

@@ -87,7 +87,7 @@
                                                     <form:input type="text" class="form-control" path="phone" />
                                                 </div>
 
-                                                <!-- Fullname -->
+                                                <!-- Full name -->
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <c:set var="errorFullname">
                                                         <form:errors path="fullName" cssClass="invalid-feedback" />

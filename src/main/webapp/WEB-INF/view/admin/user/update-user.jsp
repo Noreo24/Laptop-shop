@@ -16,6 +16,8 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                <!-- Show image -->
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
@@ -26,6 +28,27 @@
                         });
                     });
                 </script>
+
+                <!-- Show image -->
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#avatarFile");
+                        const orgImage = "${currentUser.getAvatar()}";
+                        if (orgImage) {
+                            const urlImage = "/images/avatar/" + orgImage;
+                            $("#avatarPreview").attr("src", urlImage);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                        });
+                    });
+                </script>
+
+
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
@@ -53,27 +76,56 @@
                                             <hr>
                                             <form:form method="post" action="/admin/user/update"
                                                 modelAttribute="currentUser" class="row" enctype="multipart/form-data">
+
+                                                <!-- ID -->
                                                 <div class="mb-3" style="display: none;">
                                                     <label class="form-label">ID: </label>
                                                     <form:input type="text" class="form-control" path="id" />
                                                 </div>
-                                                <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Email:</label>
-                                                    <form:input type="email" class="form-control" path="email"
-                                                        disabled="true" />
+
+                                                <!-- Password -->
+                                                <div class="mb-3" style="display: none;">
+                                                    <label class="form-label">Password: </label>
+                                                    <form:input type="text" class="form-control" path="password" />
                                                 </div>
+
+                                                <!-- Email -->
+                                                <div class="col-12 col-md-6 mb-3">
+                                                    <c:set var="errorEmail">
+                                                        <form:errors path="email" cssClass="invalid-feedback" />
+                                                    </c:set>
+                                                    <label class="form-label">Email:</label>
+                                                    <form:input type="email"
+                                                        class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
+                                                        path="email" readonly="true" />
+                                                    ${errorEmail}
+                                                </div>
+
+                                                <!-- Phone -->
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <label class="form-label">Phone number:</label>
                                                     <form:input type="text" class="form-control" path="phone" />
                                                 </div>
+
+                                                <!-- Full name -->
                                                 <div class="col-12 col-md-6 mb-3">
+                                                    <c:set var="errorFullname">
+                                                        <form:errors path="fullName" cssClass="invalid-feedback" />
+                                                    </c:set>
                                                     <label class="form-label">Full name:</label>
-                                                    <form:input type="text" class="form-control" path="fullName" />
+                                                    <form:input type="text"
+                                                        class="form-control ${not empty errorFullname ? 'is-invalid' : ''}"
+                                                        path="fullName" />
+                                                    ${errorFullname}
                                                 </div>
+
+                                                <!-- Address -->
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <label class="form-label">Address:</label>
                                                     <form:input type="text" class="form-control" path="address" />
                                                 </div>
+
+                                                <!-- Role -->
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <label class="form-label">Role:</label>
                                                     <form:select class="form-select" path="role.name">
@@ -81,6 +133,8 @@
                                                         <form:option value="user">User</form:option>
                                                     </form:select>
                                                 </div>
+
+                                                <!-- Avatar -->
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <label for="avatarFile" class="form-label">Avatar:</label>
                                                     <input type="file" class="form-control" id="avatarFile"
@@ -90,6 +144,8 @@
                                                     <img style="max-height: 250px; display: none;" alt="Avatar preview"
                                                         id="avatarPreview">
                                                 </div>
+
+
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-warning">Update</button>
                                                 </div>

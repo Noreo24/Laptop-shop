@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create product</title>
+                <title>Update product</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -16,16 +16,26 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                <!-- Show image -->
                 <script>
                     $(document).ready(() => {
-                        const avatarFile = $("#imageFile");
-                        avatarFile.change(function (e) {
+                        const updateProductFile = $("#updateProductFile");
+                        const orgImage = "${currentProduct.getImage()}";
+                        if (orgImage) {
+                            const urlImage = "/images/product/" + orgImage;
+                            $("#imagePreview").attr("src", urlImage);
+                            $("#imagePreview").css({ "display": "block" });
+                        }
+
+                        updateProductFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#imagePreview").attr("src", imgURL);
                             $("#imagePreview").css({ "display": "block" });
                         });
                     });
                 </script>
+
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
@@ -49,10 +59,17 @@
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create a product</h3>
+                                            <h3>Update product</h3>
                                             <hr>
-                                            <form:form method="post" action="/admin/product/create"
-                                                modelAttribute="newProduct" class="row" enctype="multipart/form-data">
+                                            <form:form method="post" action="/admin/product/update"
+                                                modelAttribute="currentProduct" class="row"
+                                                enctype="multipart/form-data">
+
+                                                <!-- ID -->
+                                                <div class="mb-3" style="display: none;">
+                                                    <label class="form-label">ID: </label>
+                                                    <form:input type="text" class="form-control" path="id" />
+                                                </div>
 
                                                 <!-- Name -->
                                                 <div class="col-12 col-md-6 mb-3">
@@ -136,9 +153,9 @@
 
                                                 <!-- Image -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label for="productFile" class="form-label">Image:</label>
-                                                    <input type="file" class="form-control" id="productFile"
-                                                        accept=".png, .jpg, .jpeg" name="productFile" />
+                                                    <label for="updateProductFile" class="form-label">Image:</label>
+                                                    <input type="file" class="form-control" id="updateProductFile"
+                                                        accept=".png, .jpg, .jpeg" name="updateProductFile" />
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <img style="max-height: 250px; display: none;"
@@ -147,7 +164,7 @@
 
 
                                                 <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </form:form>
                                         </div>

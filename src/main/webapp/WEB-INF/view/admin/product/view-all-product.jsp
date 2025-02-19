@@ -50,7 +50,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- <c:forEach var="product" items="${allProducts}">
+                                                <c:forEach var="product" items="${allProducts}">
                                                     <tr>
                                                         <th>${product.getId()}</th>
                                                         <td>${product.getName()}</td>
@@ -65,7 +65,7 @@
                                                                 class="btn btn-danger">Delete</a>
                                                         </td>
                                                     </tr>
-                                                </c:forEach> -->
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
