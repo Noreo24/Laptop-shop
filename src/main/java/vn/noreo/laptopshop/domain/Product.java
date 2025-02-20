@@ -2,6 +2,7 @@ package vn.noreo.laptopshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Product {
     private String image;
 
     @NotBlank(message = "Không được để trống miêu tả chi tiết")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
     @NotBlank(message = "Không được để trống miêu tả ngắn gọn")

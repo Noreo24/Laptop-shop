@@ -18,11 +18,11 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
                     $(document).ready(() => {
-                        const avatarFile = $("#imageFile");
-                        avatarFile.change(function (e) {
+                        const productFile = $("#productFile");
+                        productFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
-                            $("#imagePreview").attr("src", imgURL);
-                            $("#imagePreview").css({ "display": "block" });
+                            $("#productPreview").attr("src", imgURL);
+                            $("#productPreview").css({ "display": "block" });
                         });
                     });
                 </script>
@@ -118,9 +118,16 @@
                                                 <div class="col-12 col-md-6 mb-3">
                                                     <label class="form-label">Factory:</label>
                                                     <form:select class="form-select" path="factory">
-                                                        <form:option value="mac">MAC Os</form:option>
-                                                        <form:option value="dell">DELL</form:option>
-                                                        <form:option value="lenovo">Lenovo</form:option>
+                                                        <form:option value="Dell">Dell</form:option>
+                                                        <form:option value="Apple">Apple</form:option>
+                                                        <form:option value="Asus">Asus</form:option>
+                                                        <form:option value="HP">HP</form:option>
+                                                        <form:option value="Lenovo">Lenovo</form:option>
+                                                        <form:option value="MSI">MSI</form:option>
+                                                        <form:option value="Razer">Razer</form:option>
+                                                        <form:option value="Acer">Acer</form:option>
+                                                        <form:option value="LG">LG</form:option>
+                                                        <form:option value="Microsoft">Microsoft</form:option>
                                                     </form:select>
                                                 </div>
 
@@ -129,8 +136,18 @@
                                                     <label class="form-label">Target:</label>
                                                     <form:select class="form-select" path="target">
                                                         <form:option value="game">Gaming</form:option>
-                                                        <form:option value="svvp">Sinh viên - văn phòng</form:option>
-                                                        <form:option value="design">Thiết kế đồ hoạ</form:option>
+                                                        <form:option value="svvp">Sinh viên - Văn phòng</form:option>
+                                                        <form:option value="design">Thiết kế đồ họa</form:option>
+                                                        <form:option value="dev">Lập trình - Phát triển phần mềm
+                                                        </form:option>
+                                                        <form:option value="business">Doanh nhân - Kinh doanh
+                                                        </form:option>
+                                                        <form:option value="content">Sáng tạo nội dung - Video, ảnh
+                                                        </form:option>
+                                                        <form:option value="server">Máy chủ - Hiệu năng cao
+                                                        </form:option>
+                                                        <form:option value="basic">Sử dụng cơ bản - Lướt web, xem phim
+                                                        </form:option>
                                                     </form:select>
                                                 </div>
 
@@ -142,7 +159,7 @@
                                                 </div>
                                                 <div class="col-12 mb-3">
                                                     <img style="max-height: 250px; display: none;"
-                                                        alt="Product's image preview" id="imagePreview">
+                                                        alt="Product's image preview" id="productPreview">
                                                 </div>
 
 
