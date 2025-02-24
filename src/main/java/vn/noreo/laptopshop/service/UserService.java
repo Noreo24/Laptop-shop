@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import vn.noreo.laptopshop.domain.Role;
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.domain.dto.RegisterDTO;
 import vn.noreo.laptopshop.repository.RoleRepository;
 import vn.noreo.laptopshop.repository.UserRepository;
 
@@ -44,5 +45,13 @@ public class UserService {
 
     public Role getRoleByName(String roleName) {
         return this.roleRepository.findByName(roleName);
+    }
+
+    public User RegisterDTOToUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
     }
 }
