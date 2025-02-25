@@ -1,6 +1,9 @@
 package vn.noreo.laptopshop.domain.dto;
 
+import vn.noreo.laptopshop.service.validator.RegisterChecked;
+
 // Không phải là 1 entity/table trong database => k viết hàm tạo (constructor), k viết logic xử lý => k dùng @Entity, @Table, ...
+@RegisterChecked
 public class RegisterDTO {
 
     private String firstName;

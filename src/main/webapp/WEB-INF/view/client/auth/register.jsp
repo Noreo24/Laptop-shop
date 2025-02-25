@@ -29,7 +29,9 @@
                                             <div class="card-body">
                                                 <form:form method="post" action="/register"
                                                     modelAttribute="registerUser">
+
                                                     <div class="row mb-3">
+                                                        <!-- First name -->
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
                                                                 <form:input class="form-control" path="firstName"
@@ -37,6 +39,8 @@
                                                                 <label for="inputFirstName">First name</label>
                                                             </div>
                                                         </div>
+
+                                                        <!-- Last name -->
                                                         <div class="col-md-6">
                                                             <div class="form-floating">
                                                                 <form:input class="form-control" path="lastName"
@@ -45,19 +49,39 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <!-- Email -->
                                                     <div class="form-floating mb-3">
-                                                        <form:input class="form-control" path="email" type="email"
-                                                            placeholder="name@example.com" />
+                                                        <c:set var="errorEmail">
+                                                            <form:errors path="email" cssClass="invalid-feedback" />
+                                                        </c:set>
+                                                        <form:input
+                                                            class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
+                                                            path="email" type="email" placeholder="name@example.com" />
                                                         <label for="inputEmail">Email address</label>
+                                                        ${errorEmail}
                                                     </div>
+
+
                                                     <div class="row mb-3">
+
+                                                        <!-- Password -->
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
-                                                                <form:input class="form-control" path="password"
-                                                                    type="password" placeholder="Create a password" />
+                                                                <c:set var="errorConfirmPassword">
+                                                                    <form:errors path="confirmPassword"
+                                                                        cssClass="invalid-feedback" />
+                                                                </c:set>
+                                                                <form:input
+                                                                    class="form-control ${not empty errorConfirmPassword ? 'is-invalid' : ''}"
+                                                                    path="password" type="password"
+                                                                    placeholder="Create a password" />
                                                                 <label for="inputPassword">Password</label>
+                                                                ${errorConfirmPassword}
                                                             </div>
                                                         </div>
+
+                                                        <!-- Confirm password -->
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
                                                                 <form:input class="form-control" path="confirmPassword"
@@ -67,6 +91,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
                                                             <button class="btn btn-primary btn-block">
@@ -77,7 +102,7 @@
                                                 </form:form>
                                             </div>
                                             <div class="card-footer text-center py-3">
-                                                <div class="small"><a href="login.html">Have an account? Go to login</a>
+                                                <div class="small"><a href="/login">Have an account? Go to login</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jakarta.validation.Valid;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.domain.User;
 import vn.noreo.laptopshop.domain.dto.RegisterDTO;
@@ -42,7 +44,17 @@ public class HomepageController {
     }
 
     @PostMapping("/register")
-    public String handleRegister(@ModelAttribute("registerUser") RegisterDTO registerDTO) {
+    public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
+            BindingResult bindingResult) {
+        /*
+         * Dùng BindingResult tự động báo lỗi qua view, k cần định nghĩa biến để truyền
+         * qua view nữa
+         */
+
+        if (bindingResult.hasErrors()) {
+            return "/client/auth/register";
+        }
+
         User newUser = this.userService.RegisterDTOToUser(registerDTO);
 
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
