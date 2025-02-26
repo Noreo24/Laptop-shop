@@ -11,7 +11,7 @@ import vn.noreo.laptopshop.domain.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     User save(User noreo);
 
-    List<User> findByEmail(String email);
+    List<User> findOneByEmail(String email);
 
     List<User> findAll();
 
@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void deleteById(long id);
 
     boolean existsByEmail(String email);
+
+    User findByEmail(String email);
 }
