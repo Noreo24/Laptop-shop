@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Login</title>
+                <title>Đăng nhập</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -24,7 +24,7 @@
                                     <div class="col-lg-5">
                                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                                             <div class="card-header">
-                                                <h3 class="text-center font-weight-light my-4">Login</h3>
+                                                <h3 class="text-center font-weight-light my-4">Đăng nhập</h3>
                                             </div>
                                             <div class="card-body">
                                                 <form method="post" action="/login">
@@ -46,14 +46,14 @@
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="email"
                                                             placeholder="name@example.com" name="username" />
-                                                        <label for="inputEmail">Email address</label>
+                                                        <label for="inputEmail">Email</label>
                                                     </div>
 
                                                     <!-- Password -->
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="password"
                                                             placeholder="Password" name="password" />
-                                                        <label for="inputPassword">Password</label>
+                                                        <label for="inputPassword">Mật khẩu</label>
                                                     </div>
 
                                                     <div>
@@ -75,7 +75,7 @@
                                                     <div class="mt-4 mb-0">
                                                         <div class="d-grid">
                                                             <button class="btn btn-primary btn-block">
-                                                                Login
+                                                                Đăng nhập
                                                             </button>
                                                         </div>
                                                     </div>
@@ -83,7 +83,7 @@
                                             </div>
 
                                             <div class="card-footer text-center py-3">
-                                                <div class="small"><a href="/register">Need an account? Sign up!</a>
+                                                <div class="small"><a href="/register">Đăng ký</a>
                                                 </div>
                                             </div>
                                         </div>

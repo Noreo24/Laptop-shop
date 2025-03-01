@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Delete user ${id}</title>
+                <title>Xoá người dùng ${id}</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,20 +27,20 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
-                                </ol>
+                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <!-- <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Danh sách người dùng</li>
+                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Delete user with id = ${id}</h3>
+                                                <h3>Xoá người dùng ${id}</h3>
                                             </div>
                                             <hr>
                                             <div class="alert alert-danger" role="alert">
-                                                Are you sure to delete this user?
+                                                Bạn chắc chắn muốn xoá người dùng này?
                                             </div>
                                             <form:form method="post" action="/admin/user/delete"
                                                 modelAttribute="currentUser">
@@ -49,7 +49,14 @@
                                                     <form:input type="text" class="form-control" path="id"
                                                         value="${id}" />
                                                 </div>
-                                                <button class="btn btn-danger">Confirm</button>
+
+                                                <div class="col-12 mx-auto">
+                                                    <a href="/admin/user" class="btn btn-success">Quay lại</a>
+
+                                                    <span>
+                                                        <button type="submit" class="btn btn-danger">Xoá</button>
+                                                    </span>
+                                                </div>
                                             </form:form>
                                         </div>
                                     </div>

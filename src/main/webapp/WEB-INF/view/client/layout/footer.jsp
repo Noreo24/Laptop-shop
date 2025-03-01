@@ -37,9 +37,9 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-item">
                                 <h4 class="text-light mb-3">Liên hệ</h4>
-                                <p>Address: Hà Nội</p>
+                                <p>Địa chỉ: Hà Nội</p>
                                 <p>Email: laptopshop@gmail.com</p>
-                                <p>Phone: +84 38 724 0203</p>
+                                <p>Điện thoại: +84 38 724 0203</p>
                             </div>
                         </div>
                     </div>

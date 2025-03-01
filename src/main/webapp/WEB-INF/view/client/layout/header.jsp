@@ -41,8 +41,7 @@
                                             <i class="fas fa-user fa-2x"></i>
                                         </a>
 
-                                        <ul class="dropdown-menu dropdown-menu-end p-4"
-                                            arialabelledby="dropdownMenuLink">
+                                        <ul class="dropdown-menu dropdown-menu-end" arialabelledby="dropdownMenuLink">
                                             <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
 
                                                 <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
@@ -52,11 +51,11 @@
                                                     <c:out value="${pageContext.request.userPrincipal.name}" />
                                                 </div>
                                             </li>
-                                            <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
-                                            <li><a class="dropdown-item" href="#">Lịch sử mua hàng</a></li>
-                                            <li>
+                                            <li><a class="dropdown-item mb-3" href="#">Tài khoản của tôi</a></li>
+                                            <li><a class="dropdown-item mb-3" href="#">Lịch sử mua hàng</a></li>
+                                            <!-- <li>
                                                 <hr class="dropdown-divider">
-                                            </li>
+                                            </li> -->
                                             <li>
                                                 <form action="/logout" method="post">
                                                     <input type="hidden" name="${_csrf.parameterName}"

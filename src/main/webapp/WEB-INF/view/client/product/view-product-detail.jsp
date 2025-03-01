@@ -64,7 +64,7 @@
                                 <div>
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm
                                             </li>
                                         </ol>
@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <h4 class="fw-bold mb-3">${currentProduct.getName()}</h4>
-                                            <p class="mb-3">Factory: ${currentProduct.getFactory()}</p>
+                                            <p class="mb-3">Hãng sản xuất: ${currentProduct.getFactory()}</p>
                                             <h5 class="fw-bold mb-3">
                                                 <fmt:formatNumber type="number" value="${currentProduct.getPrice()}" />
                                                 đ
@@ -112,7 +112,8 @@
                                             </div>
                                             <a href="#"
                                                 class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ
+                                                hàng</a>
                                         </div>
                                         <div class="col-lg-12">
                                             <nav>
@@ -120,7 +121,7 @@
                                                     <button class="nav-link active border-white border-bottom-0"
                                                         type="button" role="tab" id="nav-about-tab" data-bs-toggle="tab"
                                                         data-bs-target="#nav-about" aria-controls="nav-about"
-                                                        aria-selected="true">Description</button>
+                                                        aria-selected="true">Mô tả</button>
                                                 </div>
                                             </nav>
                                             <div class="tab-content mb-5">
@@ -136,7 +137,7 @@
                                     <div class="row g-4 fruite">
                                         <div class="col-lg-12">
                                             <div class="mb-4">
-                                                <h4>Categories</h4>
+                                                <h4>Danh mục</h4>
                                                 <ul class="list-unstyled fruite-categorie">
                                                     <li>
                                                         <div class="d-flex justify-content-between fruite-name">

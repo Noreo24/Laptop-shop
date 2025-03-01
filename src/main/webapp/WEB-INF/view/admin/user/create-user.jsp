@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create user</title>
+                <title>Tạo mới người dùng</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -41,15 +41,15 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
-                                </ol>
+                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <!-- <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Danh sách người dùng</li>
+                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create an user</h3>
+                                            <h3>Tạo mới người dùng</h3>
                                             <hr>
                                             <form:form method="post" action="/admin/user/create"
                                                 modelAttribute="newUser" class="row" enctype="multipart/form-data">
@@ -71,7 +71,7 @@
                                                     <c:set var="errorPassword">
                                                         <form:errors path="password" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Password:</label>
+                                                    <label class="form-label">Mật khẩu:</label>
                                                     <form:input type="password"
                                                         class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                                                         path="password" />
@@ -80,7 +80,7 @@
 
                                                 <!-- Phone -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Phone number:</label>
+                                                    <label class="form-label">Số điện thoại:</label>
                                                     <form:input type="text" class="form-control" path="phone" />
                                                 </div>
 
@@ -89,7 +89,7 @@
                                                     <c:set var="errorFullname">
                                                         <form:errors path="fullName" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Full name:</label>
+                                                    <label class="form-label">Họ và tên:</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorFullname ? 'is-invalid' : ''}"
                                                         path="fullName" />
@@ -98,7 +98,7 @@
 
                                                 <!-- Address -->
                                                 <div class="col-12 mb-3">
-                                                    <label class="form-label">Address:</label>
+                                                    <label class="form-label">Địa chỉ:</label>
                                                     <form:input type="text" class="form-control" path="address" />
                                                 </div>
 
@@ -113,7 +113,7 @@
 
                                                 <!-- Avatar -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label for="avatarFile" class="form-label">Avatar:</label>
+                                                    <label for="avatarFile" class="form-label">Ảnh avatar:</label>
                                                     <input type="file" class="form-control" id="avatarFile"
                                                         accept=".png, .jpg, .jpeg" name="avatarFile" />
                                                 </div>
@@ -122,9 +122,12 @@
                                                         id="avatarPreview">
                                                 </div>
 
+                                                <div class="col-12 mx-auto">
+                                                    <a href="/admin/user" class="btn btn-success">Quay lại</a>
 
-                                                <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <span>
+                                                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                                    </span>
                                                 </div>
                                             </form:form>
                                         </div>

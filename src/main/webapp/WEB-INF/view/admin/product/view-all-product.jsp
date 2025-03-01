@@ -11,7 +11,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Dashboard - SB Admin</title>
+                <title>Danh sách sản phẩm</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -27,27 +27,27 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage products</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Products</li>
-                                </ol>
+                                <h1 class="mt-4">Quản lý sản phẩm</h1>
+                                <!-- <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Table products</h3>
-                                                <a href="/admin/product/create" class="btn btn-primary">Create a
-                                                    product</a>
+                                                <!-- <h3>Danh sách sản phẩm</h3> -->
+                                                <a href="/admin/product/create" class="btn btn-primary">Tạo mới sản
+                                                    phẩm</a>
                                             </div>
                                             <hr>
                                             <table class="table table-hover table-bordered ">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ID</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Price</th>
-                                                        <th scope="col">Factory</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Giá</th>
+                                                        <th scope="col">Hãng sản xuất</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -64,11 +64,11 @@
                                                             <td>${product.getFactory()}</td>
                                                             <td>
                                                                 <a href="/admin/product/${product.getId()}"
-                                                                    class="btn btn-success">View</a>
+                                                                    class="btn btn-success">Chi tiết</a>
                                                                 <a href="/admin/product/update/${product.getId()}"
-                                                                    class="btn btn-warning mx-2">Update</a>
+                                                                    class="btn btn-warning mx-2">Cập nhật</a>
                                                                 <a href="/admin/product/delete/${product.getId()}"
-                                                                    class="btn btn-danger">Delete</a>
+                                                                    class="btn btn-danger">Xoá</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

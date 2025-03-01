@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Create product</title>
+                <title>Tạo mới sản phẩm</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,15 +38,15 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage products</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Products</li>
-                                </ol>
+                                <h1 class="mt-4">Quản lý sản phẩm</h1>
+                                <!-- <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">
-                                            <h3>Create a product</h3>
+                                            <h3>Tạo mới sản phẩm</h3>
                                             <hr>
                                             <form:form method="post" action="/admin/product/create"
                                                 modelAttribute="newProduct" class="row" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
                                                     <c:set var="errorName">
                                                         <form:errors path="name" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Name:</label>
+                                                    <label class="form-label">Tên sản phẩm:</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorName ? 'is-invalid' : ''}"
                                                         path="name" />
@@ -68,7 +68,7 @@
                                                     <c:set var="errorPrice">
                                                         <form:errors path="price" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Price:</label>
+                                                    <label class="form-label">Giá:</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
                                                         path="price" />
@@ -80,7 +80,7 @@
                                                     <c:set var="errorDetailDesc">
                                                         <form:errors path="detailDesc" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Detail description:</label>
+                                                    <label class="form-label">Mô tả chi tiết:</label>
                                                     <form:textarea
                                                         class="form-control ${not empty errorDetailDesc ? 'is-invalid' : ''}"
                                                         path="detailDesc" />
@@ -92,7 +92,7 @@
                                                     <c:set var="errorShortDesc">
                                                         <form:errors path="shortDesc" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Short description:</label>
+                                                    <label class="form-label">Mô tả ngắn gọn:</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorShortDesc ? 'is-invalid' : ''}"
                                                         path="shortDesc" />
@@ -104,7 +104,7 @@
                                                     <c:set var="errorQuantity">
                                                         <form:errors path="quantity" cssClass="invalid-feedback" />
                                                     </c:set>
-                                                    <label class="form-label">Quantity:</label>
+                                                    <label class="form-label">Số lượng:</label>
                                                     <form:input type="number"
                                                         class="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
                                                         path="quantity" />
@@ -113,7 +113,7 @@
 
                                                 <!-- Factory -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Factory:</label>
+                                                    <label class="form-label">Hãng sản xuất:</label>
                                                     <form:select class="form-select" path="factory">
                                                         <form:option value="Dell">Dell</form:option>
                                                         <form:option value="Apple">Apple</form:option>
@@ -130,7 +130,7 @@
 
                                                 <!-- Target -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label class="form-label">Target:</label>
+                                                    <label class="form-label">Mục đích sử dụng:</label>
                                                     <form:select class="form-select" path="target">
                                                         <form:option value="game">Gaming</form:option>
                                                         <form:option value="svvp">Sinh viên - Văn phòng</form:option>
@@ -150,7 +150,7 @@
 
                                                 <!-- Image -->
                                                 <div class="col-12 col-md-6 mb-3">
-                                                    <label for="productFile" class="form-label">Image:</label>
+                                                    <label for="productFile" class="form-label">Ảnh:</label>
                                                     <input type="file" class="form-control" id="productFile"
                                                         accept=".png, .jpg, .jpeg" name="productFile" />
                                                 </div>
@@ -159,9 +159,12 @@
                                                         alt="Product's image preview" id="productPreview">
                                                 </div>
 
+                                                <div class="col-12 mx-auto">
+                                                    <a href="/admin/product" class="btn btn-success">Quay lại</a>
 
-                                                <div class="col-12 mb-5">
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <span>
+                                                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                                                    </span>
                                                 </div>
                                             </form:form>
                                         </div>

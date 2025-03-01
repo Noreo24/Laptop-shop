@@ -59,7 +59,7 @@
                                             <li class="nav-item">
                                                 <a class="d-flex m-2 py-2 bg-light rounded-pill active"
                                                     data-bs-toggle="pill" href="#tab-1">
-                                                    <span class="text-dark" style="width: 130px;">All Products</span>
+                                                    <span class="text-dark" style="width: 130px;">Tất cả sản phẩm</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -96,7 +96,7 @@
                                                                         <a href="#"
                                                                             class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                                 class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                            Add to cart</a>
+                                                                            Thêm vào giỏ hàng</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

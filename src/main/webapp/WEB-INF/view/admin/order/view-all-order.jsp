@@ -10,7 +10,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - SB Admin</title>
+            <title>Danh sách đơn hàng</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -26,12 +26,12 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage orders</h1>
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Orders</li>
-                            </ol>
-                            <div>Table order</div>
+                            <h1 class="mt-4">Quản lý đơn hàng</h1>
+                            <!-- <ol class="breadcrumb mb-4">
+                                <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                <li class="breadcrumb-item active">Danh sách đơn hàng</li>
+                            </ol> -->
+                            <div>Danh sách đơn hàng</div>
                         </div>
                     </main>
 

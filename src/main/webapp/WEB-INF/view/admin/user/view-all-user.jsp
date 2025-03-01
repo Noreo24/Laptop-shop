@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Table user</title>
+                <title>Danh sách người dùng</title>
                 <!-- Latest compiled and minified CSS -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,17 +28,18 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage users</h1>
-                                <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Users</li>
-                                </ol>
+                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <!-- <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
+                                    <li class="breadcrumb-item active">Danh sách người dùng</li>
+                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>Table users</h3>
-                                                <a href="/admin/user/create" class="btn btn-primary">Create an user</a>
+                                                <!-- <h3>Danh sách người dùng</h3> -->
+                                                <a href="/admin/user/create" class="btn btn-primary">Tạo mới người
+                                                    dùng</a>
                                             </div>
                                             <hr>
                                             <table class="table table-hover table-bordered ">
@@ -46,7 +47,7 @@
                                                     <tr>
                                                         <th scope="col">ID</th>
                                                         <th scope="col">Email</th>
-                                                        <th scope="col">Full Name</th>
+                                                        <th scope="col">Họ và tên</th>
                                                         <th scope="col">Role</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
@@ -60,11 +61,11 @@
                                                             <td>${user.getRole().getName()}</td>
                                                             <td>
                                                                 <a href="/admin/user/${user.getId()}"
-                                                                    class="btn btn-success">View</a>
+                                                                    class="btn btn-success">Chi tiết</a>
                                                                 <a href="/admin/user/update/${user.getId()}"
-                                                                    class="btn btn-warning mx-2">Update</a>
+                                                                    class="btn btn-warning mx-2">Cập nhật</a>
                                                                 <a href="/admin/user/delete/${user.getId()}"
-                                                                    class="btn btn-danger">Delete</a>
+                                                                    class="btn btn-danger">Xoá</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
