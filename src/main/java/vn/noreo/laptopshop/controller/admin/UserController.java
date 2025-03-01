@@ -76,7 +76,7 @@ public class UserController {
 
         // Validate
         if (newUserBindingResult.hasErrors()) {
-            return "/admin/user/create-user";
+            return "admin/user/create-user";
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
@@ -103,7 +103,7 @@ public class UserController {
             @RequestParam("updateAvatarFile") MultipartFile file) {
 
         if (currentUserBindingResult.hasErrors()) {
-            return "/admin/user/update-user";
+            return "admin/user/update-user";
         }
 
         User userUpdated = this.userService.getUserById(currentUser.getId());

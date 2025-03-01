@@ -59,7 +59,7 @@ public class ProductController {
 
         // Validate
         if (newProductBindingResult.hasErrors()) {
-            return "/admin/product/create-product";
+            return "admin/product/create-product";
         }
 
         String productImage = this.uploadService.handleSaveUploadFile(file, "product");
@@ -84,7 +84,7 @@ public class ProductController {
             @RequestParam("updateProductFile") MultipartFile file) {
 
         if (currentProductBindingResult.hasErrors()) {
-            return "/admin/product/update-product";
+            return "admin/product/update-product";
         }
 
         Product productUpdated = this.productService.getProductById(currentProduct.getId());

@@ -72,6 +72,9 @@
                                     <a href="/login" class="position-relative me-4 my-auto">
                                         Đăng nhập
                                     </a>
+                                    <a href="/register" class="position-relative me-4 my-auto">
+                                        Đăng ký
+                                    </a>
                                 </c:if>
                             </div>
                         </div>

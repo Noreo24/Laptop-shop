@@ -52,7 +52,7 @@ public class HomepageController {
          */
 
         if (bindingResult.hasErrors()) {
-            return "/client/auth/register";
+            return "client/auth/register";
         }
 
         User newUser = this.userService.RegisterDTOToUser(registerDTO);
