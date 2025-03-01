@@ -34,7 +34,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 user.getEmail(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+                // SimpleGrantedAuthority phải có tiền tố ROLE_ => ROLE_USER / ROLE_ADMIN
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().getName())));
     }
 
 }

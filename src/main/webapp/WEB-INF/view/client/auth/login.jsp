@@ -27,20 +27,31 @@
                                                 <h3 class="text-center font-weight-light my-4">Login</h3>
                                             </div>
                                             <div class="card-body">
-                                                <form:form>
+                                                <form method="post" action="/login">
+
+                                                    <!-- Hiển thị thông báo lỗi nếu đăng nhập sai -->
+                                                    <c:if test="${param.error != null}">
+                                                        <div class="my-2" style="color: red;">Invalid email or password.
+                                                        </div>
+                                                    </c:if>
 
                                                     <!-- Email -->
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="email"
-                                                            placeholder="name@example.com" />
+                                                            placeholder="name@example.com" name="username" />
                                                         <label for="inputEmail">Email address</label>
                                                     </div>
 
                                                     <!-- Password -->
                                                     <div class="form-floating mb-3">
                                                         <input class="form-control" type="password"
-                                                            placeholder="Password" />
+                                                            placeholder="Password" name="password" />
                                                         <label for="inputPassword">Password</label>
+                                                    </div>
+
+                                                    <div>
+                                                        <input type="hidden" name="${_csrf.parameterName}"
+                                                            value="${_csrf.token}" />
                                                     </div>
 
                                                     <!-- <div class="form-check mb-3">
@@ -61,7 +72,7 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </form:form>
+                                                </form>
                                             </div>
 
                                             <div class="card-footer text-center py-3">
