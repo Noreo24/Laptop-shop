@@ -77,7 +77,9 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .failureUrl("/login?error")
                         .successHandler(customSuccessHandler())
-                        .permitAll());
+                        .permitAll())
+                // Chuyển đến trang access-deny.jsp nếu dính lỗi 403: không có quyền truy cập
+                .exceptionHandling(exception -> exception.accessDeniedPage("/access-deny"));
         return http.build();
     }
 }

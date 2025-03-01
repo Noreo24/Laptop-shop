@@ -31,7 +31,14 @@
 
                                                     <!-- Hiển thị thông báo lỗi nếu đăng nhập sai -->
                                                     <c:if test="${param.error != null}">
-                                                        <div class="my-2" style="color: red;">Invalid email or password.
+                                                        <div class="my-2" style="color: red;">Sai email hoặc mật khẩu.
+                                                        </div>
+                                                    </c:if>
+
+                                                    <!-- Hiển thị thông báo đã đăng xuất-->
+                                                    <c:if test="${param.logout != null}">
+                                                        <div class="my-2" style="color: green;">Bạn đã đăng xuất thành
+                                                            công.
                                                         </div>
                                                     </c:if>
 
