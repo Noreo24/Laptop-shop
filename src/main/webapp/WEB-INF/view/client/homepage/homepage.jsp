@@ -87,16 +87,26 @@
                                                                     </h4>
                                                                     <p style="font-size: 13px;">
                                                                         ${product.getShortDesc()}</p>
-                                                                    <div class="d-flex flex-lg-wrap">
+                                                                    <div
+                                                                        class="d-flex flex-lg-wrap justify-content-center">
                                                                         <p style="font-size: 15px; text-align: center; width: 100%;"
                                                                             class="text-dark fw-bold mb-3">
                                                                             <fmt:formatNumber type="number"
                                                                                 value="${product.getPrice()}" /> đ
                                                                         </p>
-                                                                        <a href="#"
-                                                                            class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                            Thêm vào giỏ hàng</a>
+                                                                        <form
+                                                                            action="/add-product-to-cart/${product.getId()}"
+                                                                            method="post">
+                                                                            <input type="hidden"
+                                                                                name="${_csrf.parameterName}"
+                                                                                value="${_csrf.token}" />
+                                                                            <button
+                                                                                class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                                Thêm vào giỏ hàng
+                                                                            </button>
+                                                                        </form>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
