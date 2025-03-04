@@ -76,11 +76,11 @@ public class ProductService {
 
             /*
              * B2: Check sản phẩm đã từng được thêm vào giỏ hàng hay chưa, nếu đã có thì
-             * update cart_detail, còn chưa thì update quantity trong cart_detail
+             * update quantity trong cart_detail
              */
             CartDetail oldCartDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
             /*
-             * B3: Lưu vào cart_detail nếu là product mới thêm hoặc tăng quantity lên 1
+             * B3: Lưu vào cart_detail nếu là product mới tăng quantity lên 1
              */
             if (oldCartDetail == null) {
                 CartDetail newCartDetail = new CartDetail();
@@ -107,5 +107,9 @@ public class ProductService {
                 this.cartDetailRepository.save(oldCartDetail);
             }
         }
+    }
+
+    public Cart getCartByUser(User user) {
+        return this.cartRepository.findByUser(user);
     }
 }
