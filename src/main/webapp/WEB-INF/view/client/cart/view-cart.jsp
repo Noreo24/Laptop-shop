@@ -71,7 +71,11 @@
                             </div>
 
                             <c:if test="${empty(cartDetails)}">
-                                Không có sản phẩm trong giỏ hàng
+                                <div class="m-5 d-flex justify-content-center">
+                                    <strong>
+                                        Không có sản phẩm trong giỏ hàng
+                                    </strong>
+                                </div>
                             </c:if>
 
                             <c:if test="${!empty(cartDetails)}">
@@ -164,9 +168,15 @@
 
                                                     <!-- Delete -->
                                                     <td>
-                                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                            <i class="fa fa-times text-danger"></i>
-                                                        </button>
+                                                        <form method="post"
+                                                            action="/delete-cart-product/${cartDetail.getId()}">
+                                                            <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" />
+                                                            <button
+                                                                class="btn btn-md rounded-circle bg-light border mt-4">
+                                                                <i class="fa fa-times text-danger"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
