@@ -43,7 +43,7 @@ public class ItemController {
         long productId = id;
         String email = (String) session.getAttribute("email");
 
-        this.productService.handleAddProductToCart(email, productId, session);
+        this.productService.handleAddProductToCart(email, productId, session, 1);
         return "redirect:/";
     }
 
@@ -114,14 +114,13 @@ public class ItemController {
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverAddress") String receiverAddress,
             @RequestParam("receiverPhone") String receiverPhone) {
-        // User currentUser = new User();// null
+        User currentUser = new User();// null
         HttpSession session = request.getSession(false);
-        // long id = (long) session.getAttribute("id");
-        // currentUser.setId(id);
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
 
-        // this.productService.handlePlaceOrder(currentUser, session, receiverName,
-        // receiverAddress, receiverPhone);
+        this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
 
-        return "redirect:/";
+        return "redirect:/thanks";
     }
 }
