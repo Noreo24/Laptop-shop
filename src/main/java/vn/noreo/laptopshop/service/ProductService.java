@@ -130,7 +130,6 @@ public class ProductService {
             Cart currentCart = cartDetail.getCart();
 
             // delete cart-detail
-            cartDetail.setCart(null);
             this.cartDetailRepository.deleteById(cartDetailId);
 
             // update cart
@@ -142,7 +141,6 @@ public class ProductService {
                 this.cartRepository.save(currentCart);
             } else {
                 // delete cart (sum = 1)
-                currentCart.setCartDetails(null);
                 this.cartRepository.deleteById(currentCart.getId());
                 session.setAttribute("sum", 0);
             }
