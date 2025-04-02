@@ -39,7 +39,7 @@ public class Cart implements Serializable {
     private User user;
 
     // cart_detail_id
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     List<CartDetail> cartDetails;
 
     public long getId() {

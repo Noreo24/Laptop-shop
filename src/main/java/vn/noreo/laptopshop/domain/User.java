@@ -2,6 +2,7 @@ package vn.noreo.laptopshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,7 +45,7 @@ public class User {
     @JoinColumn(name = "role_id") // Tạo thêm 1 cột có tên là role_id trong bảng users trong database
     private Role role;
 
-    @OneToMany(mappedBy = "user") // Map tới trường user trong domain Order.java
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // Map tới trường user trong domain Order.java
     private List<Order> orders;
 
     @OneToOne(mappedBy = "user")

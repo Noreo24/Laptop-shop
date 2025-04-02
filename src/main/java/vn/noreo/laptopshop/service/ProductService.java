@@ -128,6 +128,8 @@ public class ProductService {
             CartDetail cartDetail = cartDetailOptional.get();
 
             Cart currentCart = cartDetail.getCart();
+            User currentUser = currentCart.getUser();
+            currentUser.setCart(null);
 
             // delete cart-detail
             this.cartDetailRepository.deleteById(cartDetailId);
@@ -201,6 +203,8 @@ public class ProductService {
                     this.cartDetailRepository.deleteById(cd.getId());
                 }
 
+                User currentUser = cart.getUser();
+                currentUser.setCart(null);
                 this.cartRepository.deleteById(cart.getId());
 
                 // step 3 : update session

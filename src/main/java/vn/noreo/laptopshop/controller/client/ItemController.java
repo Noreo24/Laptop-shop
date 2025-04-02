@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.noreo.laptopshop.domain.Cart;
@@ -70,7 +72,6 @@ public class ItemController {
         return "client/cart/view-cart";
     }
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> BUG HERE
     @PostMapping("/delete-cart-product/{id}")
     public String deleteCartDetail(@PathVariable long id, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -123,4 +124,10 @@ public class ItemController {
 
         return "redirect:/thanks";
     }
+
+    @GetMapping("/thanks")
+    public String getThanksPage(Model model) {
+        return "client/cart/thanks";
+    }
+
 }
