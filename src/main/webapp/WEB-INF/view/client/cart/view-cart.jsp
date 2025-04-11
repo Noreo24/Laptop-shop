@@ -90,7 +90,7 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Ảnh sản phẩm</th>
-                                                <th scope="col">Tên</th>
+                                                <th scope="col">Tên sản phẩm</th>
                                                 <th scope="col">Giá</th>
                                                 <th scope="col">Số lượng</th>
                                                 <th scope="col">Thành tiền</th>
@@ -223,8 +223,10 @@
                                             <form:form action="/confirm-checkout" method="post" modelAttribute="cart">
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
-                                                <div style="display: block;">
 
+
+                                                <!-- Check quantity vs id -->
+                                                <div style="display: none;">
                                                     <c:forEach var="cartDetail" items="${cart.getCartDetails()}"
                                                         varStatus="status">
                                                         <div class="mb-3">
@@ -242,8 +244,9 @@
                                                             </div>
                                                         </div>
                                                     </c:forEach>
-
                                                 </div>
+
+
                                                 <button
                                                     class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">
                                                     Xác nhận thanh toán

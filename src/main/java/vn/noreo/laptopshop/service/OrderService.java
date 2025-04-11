@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.OrderDetail;
+import vn.noreo.laptopshop.domain.User;
 import vn.noreo.laptopshop.repository.OrderDetailRepository;
 import vn.noreo.laptopshop.repository.OrderRepository;
 
@@ -23,6 +24,10 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         return this.orderRepository.findAll();
+    }
+
+    public List<Order> getOrdersByUser(User user) {
+        return this.orderRepository.findByUser(user);
     }
 
     public Order getOrderById(long id) {
@@ -52,7 +57,10 @@ public class OrderService {
             Order currentOrder = orderOptional.get();
             currentOrder.setStatus(order.getStatus());
             this.orderRepository.save(currentOrder);
-
         }
+    }
+
+    public long countOrders() {
+        return this.orderRepository.count();
     }
 }

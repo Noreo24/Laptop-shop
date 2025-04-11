@@ -42,21 +42,21 @@
                                         </a>
 
                                         <ul class="dropdown-menu dropdown-menu-end" arialabelledby="dropdownMenuLink">
+
                                             <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
 
                                                 <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
                                                     src="/images/avatar/${sessionScope.avatar}" />
 
                                                 <div class="text-center my-3">
-                                                    <!-- <c:out value="${pageContext.request.userPrincipal.name}" /> -->
                                                     <c:out value="${sessionScope.fullName}" />
                                                 </div>
                                             </li>
+
                                             <li><a class="dropdown-item mb-3" href="#">Tài khoản của tôi</a></li>
-                                            <li><a class="dropdown-item mb-3" href="#">Lịch sử mua hàng</a></li>
-                                            <!-- <li>
-                                                <hr class="dropdown-divider">
-                                            </li> -->
+                                            <li><a class="dropdown-item mb-3" href="/order-history">Lịch sử mua hàng</a>
+                                            </li>
+
                                             <li>
                                                 <form action="/logout" method="post">
                                                     <input type="hidden" name="${_csrf.parameterName}"

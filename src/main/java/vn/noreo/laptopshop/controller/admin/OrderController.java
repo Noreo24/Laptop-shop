@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import vn.noreo.laptopshop.domain.Order;
-import vn.noreo.laptopshop.domain.OrderDetail;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;

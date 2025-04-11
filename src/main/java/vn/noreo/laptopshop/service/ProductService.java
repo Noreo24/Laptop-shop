@@ -211,6 +211,9 @@ public class ProductService {
                 session.setAttribute("sum", 0);
             }
         }
+    }
 
+    public long countProducts() {
+        return this.productRepository.count();
     }
 }

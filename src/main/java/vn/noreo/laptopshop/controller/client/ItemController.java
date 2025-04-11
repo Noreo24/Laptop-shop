@@ -15,17 +15,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.noreo.laptopshop.domain.Cart;
 import vn.noreo.laptopshop.domain.CartDetail;
+import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.service.OrderService;
 import vn.noreo.laptopshop.service.ProductService;
 
 @Controller
 public class ItemController {
 
     private final ProductService productService;
+    private final OrderService orderService;
 
-    public ItemController(ProductService productService) {
+    public ItemController(ProductService productService, OrderService orderService) {
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     // View product detail - User
@@ -126,6 +130,18 @@ public class ItemController {
     @GetMapping("/thanks")
     public String getThanksPage(Model model) {
         return "client/cart/thanks";
+    }
+
+    @GetMapping("/order-history")
+    public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+        User currentUser = new User();
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
+
+        List<Order> orders = this.orderService.getOrdersByUser(currentUser);
+        model.addAttribute("orders", orders);
+        return "client/cart/order-history";
     }
 
 }
