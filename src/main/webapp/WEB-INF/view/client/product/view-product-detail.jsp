@@ -96,24 +96,46 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             <p class="mb-4">${currentProduct.getShortDesc()}</p>
+
+                                            <!-- Quantity -->
                                             <div class="input-group quantity mb-5" style="width: 100px;">
+                                                <!-- Minus button -->
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-sm btn-minus rounded-circle bg-light border">
                                                         <i class="fa fa-minus"></i>
                                                     </button>
                                                 </div>
+
+                                                <!-- Quantity -->
                                                 <input type="text"
-                                                    class="form-control form-control-sm text-center border-0" value="1">
+                                                    class="form-control form-control-sm text-center border-0" value="1"
+                                                    data-cart-detail-index="0">
+
+                                                <!-- Plus button -->
                                                 <div class="input-group-btn">
                                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                                         <i class="fa fa-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <a href="#"
-                                                class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                                    class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ
-                                                hàng</a>
+
+                                            <form action="/add-product-to-cart-from-product-detail" method="post"
+                                                modelAttribute="currentProduct">
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                    value="${_csrf.token}" />
+
+                                                <input class="form-control d-none" type="text" name="id"
+                                                    value="${currentProduct.getId()}">
+
+                                                <input class="form-control d-none" type="text" name="quantity"
+                                                    id="cartDetails0.quantity">
+
+                                                <button
+                                                    class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                    Thêm vào giỏ hàng
+                                                </button>
+                                            </form>
                                         </div>
                                         <div class="col-lg-12">
                                             <nav>

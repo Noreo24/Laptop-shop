@@ -127,22 +127,7 @@
     });
   });
 
-  // Product Quantity - tăng giảm số lượng chứ không cập nhật tiền
-  // $(".quantity button").on("click", function () {
-  //   var button = $(this);
-  //   var oldValue = button.parent().parent().find("input").val();
-  //   if (button.hasClass("btn-plus")) {
-  //     var newVal = parseFloat(oldValue) + 1;
-  //   } else {
-  //     if (oldValue > 0) {
-  //       var newVal = parseFloat(oldValue) - 1;
-  //     } else {
-  //       newVal = 0;
-  //     }
-  //   }
-  //   button.parent().parent().find("input").val(newVal);
-  // });
-
+  // Adjust product quantity in cart - tăng giảm số lượng + cập nhật giá tiền
   $(".quantity button").on("click", function () {
     let change = 0;
 
