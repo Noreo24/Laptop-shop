@@ -28,10 +28,6 @@
                         <main>
                             <div class="container-fluid px-4">
                                 <h1 class="mt-4">Quản lý sản phẩm</h1>
-                                <!-- <ol class="breadcrumb mb-4">
-                                    <li class="breadcrumb-item"><a href="/admin">Thống kê</a></li>
-                                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
-                                </ol> -->
                                 <div class="mt-5">
                                     <div class="row">
                                         <div class="col-12 mx-auto">

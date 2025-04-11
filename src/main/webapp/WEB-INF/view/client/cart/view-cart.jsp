@@ -71,10 +71,14 @@
                             </div>
 
                             <c:if test="${empty(cartDetails)}">
-                                <div class="m-5 d-flex justify-content-center">
-                                    <strong>
-                                        Không có sản phẩm trong giỏ hàng
-                                    </strong>
+                                <div class="row">
+                                    <div class="col-12 mt-5">
+                                        <div class="alert alert-warning" role="alert">
+                                            <h4 class="alert-heading">Không có sản phẩm trong giỏ hàng!</h4>
+                                            <p>Giỏ hàng của bạn hiện đang trống. Hãy thêm sản phẩm vào giỏ hàng để
+                                                tiếp tục.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </c:if>
 

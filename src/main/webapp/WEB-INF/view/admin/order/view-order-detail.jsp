@@ -2,21 +2,22 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
             <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> <!-- format tiền -->
-
-                <!DOCTYPE html>
                 <html lang="en">
 
                 <head>
-                    <meta charset="utf-8" />
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                    <meta name="description" content="" />
-                    <meta name="author" content="" />
-                    <title>Danh sách đơn hàng</title>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Đơn hàng ${currentOrder.getId()}</title>
+                    <!-- Latest compiled and minified CSS -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+                        rel="stylesheet">
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                     <link href="/css/styles.css" rel="stylesheet" />
                     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
                         crossorigin="anonymous"></script>
                 </head>
+
 
                 <body class="sb-nav-fixed">
                     <!-- Header -->
@@ -33,41 +34,49 @@
                                     <div class="mt-5">
                                         <div class="row">
                                             <div class="col-12 mx-auto">
-                                                <div class="d-flex justify-content-between"></div>
                                                 <hr>
                                                 <table class="table table-hover table-bordered ">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">ID</th>
+                                                            <th scope="col">Ảnh</th>
+                                                            <th scope="col">Tên sản phẩm</th>
+                                                            <th scope="col">Giá</th>
+                                                            <th scope="col">Số lượng</th>
                                                             <th scope="col">Thành tiền</th>
-                                                            <th scope="col">Khách hàng</th>
-                                                            <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach var="order" items="${allOrders}">
+                                                        <c:forEach var="currentOrderDetail"
+                                                            items="${currentOrderDetails}">
                                                             <tr>
-                                                                <th>${order.getId()}</th>
+                                                                <th>${currentOrderDetail.getId()}</th>
+                                                                <td>
+                                                                    <div
+                                                                        class="d-flex align-items-center justify-content-center">
+                                                                        <img class="img-fluid me-5"
+                                                                            src="/images/product/${currentOrderDetail.getProduct().getImage()}"
+                                                                            style="width: 80px; height: 80px;"
+                                                                            alt="Card image cap">
+                                                                    </div>
+                                                                </td>
+                                                                <td>${currentOrderDetail.getProduct().getName()}</td>
                                                                 <td>
                                                                     <fmt:formatNumber type="number"
-                                                                        value="${order.getTotalPrice()}" />
+                                                                        value="${currentOrderDetail.getPrice()}" />
                                                                     đ
                                                                 </td>
-                                                                <td>${order.getReceiveName()}</td>
-                                                                <td>${order.getStatus()}</td>
+                                                                <td>${currentOrderDetail.getQuantity()}</td>
                                                                 <td>
-                                                                    <a href="/admin/order/${order.getId()}"
-                                                                        class="btn btn-success">Chi tiết</a>
-                                                                    <a href="/admin/order/update/${order.getId()}"
-                                                                        class="btn btn-warning mx-2">Cập nhật</a>
-                                                                    <a href="/admin/order/delete/${order.getId()}"
-                                                                        class="btn btn-danger">Xoá</a>
+                                                                    <fmt:formatNumber type="number" value="${currentOrderDetail.getQuantity() *
+                                                                            currentOrderDetail.getPrice()}" />
+                                                                    đ
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
                                                 </table>
+                                                <a href="/admin/order" class="btn btn-success mt-3">Quay lại</a>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +87,8 @@
                             <jsp:include page="../layout/footer.jsp" />
                         </div>
                     </div>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                    <!-- Latest compiled JavaScript -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
                         crossorigin="anonymous"></script>
                     <script src="/js/scripts.js"></script>
                 </body>
