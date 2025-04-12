@@ -2,6 +2,9 @@ package vn.noreo.laptopshop.controller.client;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +35,9 @@ public class HomepageController {
 
     @GetMapping("/")
     public String getHomepage(Model model) {
-        List<Product> allProducts = this.productService.getAllProducts();
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Product> products = this.productService.getAllProducts(pageable);
+        List<Product> allProducts = products.getContent();
         model.addAttribute("allProducts", allProducts);
         return "client/homepage/homepage";
     }

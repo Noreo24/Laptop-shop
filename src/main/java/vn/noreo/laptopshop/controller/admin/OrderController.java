@@ -1,7 +1,11 @@
 package vn.noreo.laptopshop.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OrderController {
@@ -23,9 +28,21 @@ public class OrderController {
     }
 
     @GetMapping("/admin/order")
-    public String getAllOrderPage(Model model) {
-        List<Order> allOrders = orderService.getAllOrders();
-        model.addAttribute("allOrders", allOrders);
+    public String getAllOrderPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (NumberFormatException e) {
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<Order> allOrders = this.orderService.getAllOrders(pageable);
+        List<Order> allOrdersPaging = allOrders.getContent();
+        model.addAttribute("allOrders", allOrdersPaging);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", allOrders.getTotalPages());
         return "admin/order/view-all-order";
     }
 

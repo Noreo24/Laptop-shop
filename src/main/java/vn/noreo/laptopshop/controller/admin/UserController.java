@@ -1,7 +1,11 @@
 package vn.noreo.laptopshop.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,9 +50,22 @@ public class UserController {
     }
 
     @GetMapping("/admin/user")
-    public String getAllUserPage(Model model) {
-        List<User> allUsers = userService.getAllUsers();
-        model.addAttribute("allUsers", allUsers);
+    public String getAllUserPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (NumberFormatException e) {
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<User> allUsers = this.userService.getAllUsers(pageable);
+        List<User> allUsersPaging = allUsers.getContent();
+        model.addAttribute("allUsers", allUsersPaging);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", allUsers.getTotalPages());
         return "admin/user/view-all-user";
     }
 

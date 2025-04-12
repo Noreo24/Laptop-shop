@@ -3,6 +3,8 @@ package vn.noreo.laptopshop.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.noreo.laptopshop.domain.Order;
@@ -22,8 +24,8 @@ public class OrderService {
         this.orderDetailRepository = orderDetailRepository;
     }
 
-    public List<Order> getAllOrders() {
-        return this.orderRepository.findAll();
+    public Page<Order> getAllOrders(Pageable pageable) {
+        return this.orderRepository.findAll(pageable);
     }
 
     public List<Order> getOrdersByUser(User user) {
