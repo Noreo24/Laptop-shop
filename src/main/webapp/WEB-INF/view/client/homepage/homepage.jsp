@@ -58,7 +58,7 @@
                                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
                                             <li class="nav-item">
                                                 <a class="d-flex m-2 py-2 bg-light rounded-pill active"
-                                                    data-bs-toggle="pill" href="#tab-1">
+                                                    href="/all-products">
                                                     <span class="text-dark" style="width: 130px;">Tất cả sản phẩm</span>
                                                 </a>
                                             </li>
@@ -88,7 +88,7 @@
                                                                     <p style="font-size: 13px;">
                                                                         ${product.getShortDesc()}</p>
                                                                     <div
-                                                                        class="d-flex flex-lg-wrap justify-content-center">
+                                                                        class="d-flex flex-lg-wrap justify-content-center flex-column">
                                                                         <p style="font-size: 15px; text-align: center; width: 100%;"
                                                                             class="text-dark fw-bold mb-3">
                                                                             <fmt:formatNumber type="number"

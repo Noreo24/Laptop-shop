@@ -20,7 +20,7 @@
 
                             <div class="navbar-nav">
                                 <a href="/" class="nav-item nav-link active">Trang chủ</a>
-                                <a href="/product/detail" class="nav-item nav-link">Sản phẩm</a>
+                                <a href="/all-products" class="nav-item nav-link">Sản phẩm</a>
                             </div>
 
 

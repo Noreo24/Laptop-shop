@@ -127,6 +127,20 @@
     });
   });
 
+  // Add active class to header navbar
+  const navElement = $("#navbarCollapse");
+  const currentUrl = window.location.pathname;
+  navElement.find('a.nav-link').each(function () {
+    const link = $(this);
+    const href = link.attr('href');
+
+    if (href === currentUrl) {
+      link.addClass('active');
+    } else {
+      link.removeClass('active');
+    }
+  });
+
   // Adjust product quantity in cart - tăng giảm số lượng + cập nhật giá tiền
   $(".quantity button").on("click", function () {
     let change = 0;

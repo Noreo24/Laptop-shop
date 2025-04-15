@@ -2,7 +2,11 @@ package vn.noreo.laptopshop.controller.client;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -144,7 +148,7 @@ public class ItemController {
         return "client/cart/order-history";
     }
 
-    @PostMapping("add-product-to-cart-from-product-detail")
+    @PostMapping("/add-product-to-cart-from-product-detail")
     public String handleAddToCartFromProductDetail(@RequestParam("id") long id, @RequestParam("quantity") long quantity,
             HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -152,6 +156,26 @@ public class ItemController {
         String email = (String) session.getAttribute("email");
         this.productService.handleAddProductToCart(email, id, session, quantity);
         return "redirect:/product/" + id;
+    }
+
+    @GetMapping("/all-products")
+    public String getAllProductsPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (NumberFormatException e) {
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, 6);
+        Page<Product> products = this.productService.getAllProducts(pageable);
+        List<Product> allProducts = products.getContent();
+
+        model.addAttribute("allProducts", allProducts);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", products.getTotalPages());
+        return "client/product/view-all-products";
     }
 
 }
