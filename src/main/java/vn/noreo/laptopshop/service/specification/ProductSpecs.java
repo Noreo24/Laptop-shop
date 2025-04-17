@@ -26,8 +26,12 @@ public class ProductSpecs {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(Product_.FACTORY), factory);
     }
 
-    public static Specification<Product> searchByFactorys(List<String> listFactory) {
+    public static Specification<Product> searchByListFactory(List<String> listFactory) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.in(root.get(Product_.FACTORY)).value(listFactory);
+    }
+
+    public static Specification<Product> searchByListTarget(List<String> listTarget) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.in(root.get(Product_.TARGET)).value(listTarget);
     }
 
     public static Specification<Product> searchByPriceRange(double minPrice, double maxPrice) {

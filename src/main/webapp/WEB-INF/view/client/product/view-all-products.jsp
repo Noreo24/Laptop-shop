@@ -44,12 +44,10 @@
 
                     <jsp:include page="../layout/header.jsp" />
 
-                    <jsp:include page="../layout/banner.jsp" />
-
                     <!-- Fruits Shop Start-->
-                    <div class="container-fluid fruite">
-                        <div class="container">
-                            <div class="row g-4">
+                    <div class="container-fluid fruite mt-5 py-5">
+                        <div class="container py-5">
+                            <div class="row g-4 mb-5">
                                 <div class="col-lg-12">
                                     <!-- <div class="row g-4">
                                         <div class="col-xl-3">
@@ -68,20 +66,20 @@
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="factory-1"
-                                                        value="APPLE">
-                                                    <label class="form-check-label" for="factory-1">Apple</label>
+                                                        value="ACER">
+                                                    <label class="form-check-label" for="factory-1">Acer</label>
                                                 </div>
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="factory-2"
-                                                        value="ASUS">
-                                                    <label class="form-check-label" for="factory-2">Asus</label>
+                                                        value="APPLE">
+                                                    <label class="form-check-label" for="factory-2">Apple</label>
                                                 </div>
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="factory-3"
-                                                        value="LENOVO">
-                                                    <label class="form-check-label" for="factory-3">Lenovo</label>
+                                                        value="ASUS">
+                                                    <label class="form-check-label" for="factory-3">Asus</label>
                                                 </div>
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
@@ -92,14 +90,38 @@
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="factory-5"
-                                                        value="LG">
-                                                    <label class="form-check-label" for="factory-5">LG</label>
+                                                        value="HP">
+                                                    <label class="form-check-label" for="factory-5">HP</label>
                                                 </div>
 
                                                 <div class="col-4 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="factory-6"
-                                                        value="ACER">
-                                                    <label class="form-check-label" for="factory-6">Acer</label>
+                                                        value="LENOVO">
+                                                    <label class="form-check-label" for="factory-6">Lenovo</label>
+                                                </div>
+
+                                                <div class="col-4 form-check form-check-inline mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="factory-7"
+                                                        value="LG">
+                                                    <label class="form-check-label" for="factory-7">LG</label>
+                                                </div>
+
+                                                <div class="col-4 form-check form-check-inline mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="factory-8"
+                                                        value="MICROSOFT">
+                                                    <label class="form-check-label" for="factory-8">Microsoft</label>
+                                                </div>
+
+                                                <div class="col-4 form-check form-check-inline mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="factory-9"
+                                                        value="MSI">
+                                                    <label class="form-check-label" for="factory-9">MSI</label>
+                                                </div>
+
+                                                <div class="col-4 form-check form-check-inline mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="factory-10"
+                                                        value="RAZER">
+                                                    <label class="form-check-label" for="factory-10">Razer</label>
                                                 </div>
                                             </div>
 
@@ -108,33 +130,40 @@
 
                                                 <div class="col-12 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="target-1"
-                                                        value="GAMING">
+                                                        value="GAME">
                                                     <label class="form-check-label" for="target-1">Gaming</label>
                                                 </div>
 
                                                 <div class="col-12 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="target-2"
-                                                        value="SINHVIEN-VANPHONG">
+                                                        value="SVVP">
                                                     <label class="form-check-label" for="target-2">Sinh viên - văn
                                                         phòng</label>
                                                 </div>
 
                                                 <div class="col-12 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="target-3"
-                                                        value="THIET-KE-DO-HOA">
+                                                        value="DESIGN">
                                                     <label class="form-check-label" for="target-3">Thiết kế đồ
                                                         họa</label>
                                                 </div>
 
                                                 <div class="col-12 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="target-4"
-                                                        value="MONG-NHE">
-                                                    <label class="form-check-label" for="target-4">Mỏng nhẹ</label>
+                                                        value="DEV">
+                                                    <label class="form-check-label" for="target-4">Lập trình</label>
                                                 </div>
 
                                                 <div class="col-12 form-check form-check-inline mb-3">
                                                     <input class="form-check-input" type="checkbox" id="target-5"
-                                                        value="DOANH-NHAN">
+                                                        value="content">
+                                                    <label class="form-check-label" for="target-5">Sáng tạo nội
+                                                        dung</label>
+                                                </div>
+
+                                                <div class="col-12 form-check form-check-inline mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="target-6"
+                                                        value="BUSINESS">
                                                     <label class="form-check-label" for="target-5">Doanh nhân</label>
                                                 </div>
                                             </div>
@@ -202,6 +231,12 @@
 
                                         <div class="col-lg-9">
                                             <div class="row g-4">
+
+                                                <c:if test="${totalPages == 0}">
+                                                    <div class="col-12 text-center mt-5 mb-5 justify-content-center">
+                                                        <h4>Không có sản phẩm nào</h4>
+                                                    </div>
+                                                </c:if>
 
                                                 <!-- All products -->
                                                 <c:forEach var="product" items="${allProducts}">

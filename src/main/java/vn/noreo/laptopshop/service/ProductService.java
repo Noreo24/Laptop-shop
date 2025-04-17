@@ -15,6 +15,7 @@ import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.OrderDetail;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.noreo.laptopshop.repository.CartDetailRepository;
 import vn.noreo.laptopshop.repository.CartRepository;
 import vn.noreo.laptopshop.repository.OrderDetailRepository;
@@ -51,75 +52,65 @@ public class ProductService {
         return this.productRepository.findAll(pageable);
     }
 
-    public Page<Product> getAllProductsByName(Pageable pageable, String name) {
-        return this.productRepository.findAll(ProductSpecs.searchByName(name),
-                pageable);
-    }
+    public Page<Product> getAllProductsWithSpec(Pageable pageable, ProductCriteriaDTO productCriteriaDTO) {
 
-    // Case 1
-    public Page<Product> getAllProductsByMinPrice(Pageable pageable, double minPrice) {
-        return this.productRepository.findAll(ProductSpecs.searchByMinPrice(minPrice), pageable);
-    }
-
-    // Case 2
-    public Page<Product> getAllProductsByMaxPrice(Pageable pageable, double maxPrice) {
-        return this.productRepository.findAll(ProductSpecs.searchByMaxPrice(maxPrice), pageable);
-    }
-
-    // Case 3
-    public Page<Product> getAllProductsByFactory(Pageable pageable, String factory) {
-        return this.productRepository.findAll(ProductSpecs.searchByFactory(factory), pageable);
-    }
-
-    // Case 4
-    public Page<Product> getAllProductsByFactorys(Pageable pageable, List<String> factory) {
-        return this.productRepository.findAll(ProductSpecs.searchByFactorys(factory), pageable);
-    }
-
-    // Case 5
-    public Page<Product> getAllProductsByPriceRange(Pageable pageable, String price) {
-        if (price.equals("10-toi-15-trieu")) {
-            double minPrice = 10000000;
-            double maxPrice = 15000000;
-            return this.productRepository.findAll(ProductSpecs.searchByPriceRange(minPrice, maxPrice), pageable);
-        } else if (price.equals("15-toi-30-trieu")) {
-            double minPrice = 15000000;
-            double maxPrice = 30000000;
-            return this.productRepository.findAll(ProductSpecs.searchByPriceRange(minPrice, maxPrice), pageable);
-        } else {
+        if (productCriteriaDTO.getTarget() == null
+                && productCriteriaDTO.getFactory() == null
+                && productCriteriaDTO.getPrice() == null) {
             return this.productRepository.findAll(pageable);
         }
+
+        Specification<Product> combinedSpec = Specification.where(null);
+
+        if (productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
+            Specification<Product> targetSpec = ProductSpecs.searchByListTarget(productCriteriaDTO.getTarget().get());
+            combinedSpec = combinedSpec.and(targetSpec);
+        }
+
+        if (productCriteriaDTO.getFactory() != null && productCriteriaDTO.getFactory().isPresent()) {
+            Specification<Product> factorySpec = ProductSpecs
+                    .searchByListFactory(productCriteriaDTO.getFactory().get());
+            combinedSpec = combinedSpec.and(factorySpec);
+        }
+
+        if (productCriteriaDTO.getPrice() != null && productCriteriaDTO.getPrice().isPresent()) {
+            Specification<Product> priceSpec = this.buildPriceSpec(productCriteriaDTO.getPrice().get());
+            combinedSpec = combinedSpec.and(priceSpec);
+        }
+
+        return this.productRepository.findAll(combinedSpec, pageable);
     }
 
-    // Case 6
-    public Page<Product> getAllProductsByPriceRanges(Pageable pageable, List<String> listPriceRange) {
-        Specification<Product> combineSpec = (root, query, criteriaBuilder) -> criteriaBuilder.disjunction();
-        int count = 0;
+    public Specification<Product> buildPriceSpec(List<String> listPriceRange) {
+        Specification<Product> combinedSpec = (root, query, criteriaBuilder) -> criteriaBuilder.disjunction();
+
         for (String p : listPriceRange) {
             double minPrice = 0;
             double maxPrice = 0;
 
             switch (p) {
-                case "10-toi-15-trieu":
+                case "duoi-10-trieu":
+                    minPrice = 0;
+                    maxPrice = 10000000;
+                    break;
+                case "10-15-trieu":
                     minPrice = 10000000;
                     maxPrice = 15000000;
-                    count++;
                     break;
-                case "15-toi-20-trieu":
+                case "15-20-trieu":
                     minPrice = 15000000;
                     maxPrice = 20000000;
-                    count++;
                     break;
-                case "20-toi-30-trieu":
+                case "tren-20-trieu":
                     minPrice = 20000000;
-                    maxPrice = 30000000;
-                    count++;
+                    maxPrice = 300000000;
                     break;
             }
 
             if (minPrice != 0 && maxPrice != 0) {
-                Specification<Product> rangeSpec = ProductSpecs.searchByPriceRanges(minPrice, maxPrice);
-                combineSpec = combineSpec.or(rangeSpec);
+                Specification<Product> rangeSpec = ProductSpecs.searchByPriceRanges(minPrice,
+                        maxPrice);
+                combinedSpec = combinedSpec.or(rangeSpec);
                 /*
                  * combineSpec = combineSpec.or(rangeSpec);: Dùng or để
                  * "price-range=15-toi-20-trieu,20-" vẫn chạy dc và chỉ trả ra kết quả trong
@@ -130,11 +121,7 @@ public class ProductService {
                  */
             }
         }
-
-        if (count == 0) {
-            return this.productRepository.findAll(pageable);
-        }
-        return this.productRepository.findAll(combineSpec, pageable);
+        return combinedSpec;
     }
 
     /*

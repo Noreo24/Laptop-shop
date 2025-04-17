@@ -206,6 +206,7 @@
     }
   });
 
+  // Format currency
   function formatCurrency(value) {
     // Use the 'vi-VN' locale to format the number according to Vietnamese currency format
     // and 'VND' as the currency type for Vietnamese đồng
@@ -218,5 +219,92 @@
     // Replace dots with commas for thousands separator
     formatted = formatted.replace(/\./g, ",");
     return formatted;
+  }
+
+  // Handle filter products
+  $('#btnFilter').click(function (event) {
+    event.preventDefault();
+
+    let factoryArr = [];
+    let targetArr = [];
+    let priceArr = [];
+    // Factory filter
+    $("#factoryFilter .form-check-input:checked").each(function () {
+      factoryArr.push($(this).val());
+    });
+
+    // Target filter
+    $("#targetFilter .form-check-input:checked").each(function () {
+      targetArr.push($(this).val());
+    });
+
+    // Price filter
+    $("#priceFilter .form-check-input:checked").each(function () {
+      priceArr.push($(this).val());
+    });
+
+    // Sort order
+    let sortValue = $('input[name="radio-sort"]:checked').val();
+
+    const currentUrl = new URL(window.location.href);
+    const searchParams = currentUrl.searchParams;
+
+    // Add or update query parameters
+    searchParams.set('page', '1');
+    searchParams.set('sort', sortValue);
+
+    // Reset
+    searchParams.delete('factory');
+    searchParams.delete('target');
+    searchParams.delete('price');
+
+    if (factoryArr.length > 0) {
+      searchParams.set('factory', factoryArr.join(','));
+    }
+
+    if (targetArr.length > 0) {
+      searchParams.set('target', targetArr.join(','));
+    }
+
+    if (priceArr.length > 0) {
+      searchParams.set('price', priceArr.join(','));
+    }
+
+    // Update the URL and reload the page
+    window.location.href = currentUrl.toString();
+  });
+
+  // Handle auto checkbox after page loading
+  // Parse the URL parameters
+  const params = new URLSearchParams(window.location.search);
+
+  // Set checkboxes for 'factory'
+  if (params.has('factory')) {
+    const factories = params.get('factory').split(',');
+    factories.forEach(factory => {
+      $(`#factoryFilter .form-check-input[value="${factory}"]`).prop('checked', true);
+    });
+  }
+
+  // Set checkboxes for 'target'
+  if (params.has('target')) {
+    const targets = params.get('target').split(',');
+    targets.forEach(target => {
+      $(`#targetFilter .form-check-input[value="${target}"]`).prop('checked', true);
+    });
+  }
+
+  // Set checkboxes for 'price'
+  if (params.has('price')) {
+    const prices = params.get('price').split(',');
+    prices.forEach(price => {
+      $(`#priceFilter .form-check-input[value="${price}"]`).prop('checked', true);
+    });
+  }
+
+  // Set radio buttons for 'sort'
+  if (params.has('sort')) {
+    const sort = params.get('sort');
+    $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
   }
 })(jQuery);

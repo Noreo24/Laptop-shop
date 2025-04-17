@@ -23,6 +23,7 @@ import vn.noreo.laptopshop.domain.CartDetail;
 import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.Product;
 import vn.noreo.laptopshop.domain.User;
+import vn.noreo.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.noreo.laptopshop.service.OrderService;
 import vn.noreo.laptopshop.service.ProductService;
 
@@ -160,50 +161,19 @@ public class ItemController {
     }
 
     @GetMapping("/all-products")
-    public String getAllProductsPage(Model model, @RequestParam("page") Optional<String> pageOptional,
-            @RequestParam("name") Optional<String> nameOptional,
-            @RequestParam("min-price") Optional<String> minPriceOptional,
-            @RequestParam("max-price") Optional<String> maxPriceOptional,
-            @RequestParam("factory") Optional<String> factoryOptional,
-            @RequestParam("price-range") Optional<String> priceRangeOptional) {
+    public String getAllProductsPage(Model model, ProductCriteriaDTO productCriteriaDTO) {
 
         int page = 1;
         try {
-            if (pageOptional.isPresent()) {
-                page = Integer.parseInt(pageOptional.get());
+            if (productCriteriaDTO.getPage() != null && productCriteriaDTO.getPage().isPresent()) {
+                page = Integer.parseInt(productCriteriaDTO.getPage().get());
             }
         } catch (NumberFormatException e) {
         }
 
         Pageable pageable = PageRequest.of(page - 1, 6);
 
-        String name = nameOptional.isPresent() ? nameOptional.get() : "";
-        double minPrice = minPriceOptional.isPresent() ? Double.parseDouble(minPriceOptional.get()) : 0;
-        double maxPrice = maxPriceOptional.isPresent() ? Double.parseDouble(maxPriceOptional.get()) : 0;
-        String factory = factoryOptional.isPresent() ? factoryOptional.get() : "";
-        String priceRange = priceRangeOptional.isPresent() ? priceRangeOptional.get() : "";
-        ;
-        // Page<Product> products = this.productService.getAllProductsByName(pageable,
-        // name);
-        // Case 1: search by min price
-        // Page<Product> products =
-        // this.productService.getAllProductsByMinPrice(pageable, minPrice);
-        // Case 2: search by max price
-        // Page<Product> products =
-        // this.productService.getAllProductsByMaxPrice(pageable, maxPrice);
-        // Case 3: search by factory
-        // Page<Product> products =
-        // this.productService.getAllProductsByFactory(pageable, factory);
-        // Case 4: search by list factory
-        // List<String> listFactory = Arrays.asList(factoryOptional.get().split(","));
-        // Page<Product> products =
-        // this.productService.getAllProductsByFactorys(pageable, listFactory);
-        // Case 5: search by price range
-        // Page<Product> products =
-        // this.productService.getAllProductsByPriceRange(pageable, priceRange);
-        // Case 6: search by list price
-        List<String> listPrice = Arrays.asList(priceRangeOptional.get().split(","));
-        Page<Product> products = this.productService.getAllProductsByPriceRanges(pageable, listPrice);
+        Page<Product> products = this.productService.getAllProductsWithSpec(pageable, productCriteriaDTO);
 
         List<Product> allProducts = products.getContent();
 
