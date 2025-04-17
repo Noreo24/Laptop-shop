@@ -19,6 +19,7 @@ import vn.noreo.laptopshop.repository.CartRepository;
 import vn.noreo.laptopshop.repository.OrderDetailRepository;
 import vn.noreo.laptopshop.repository.OrderRepository;
 import vn.noreo.laptopshop.repository.ProductRepository;
+import vn.noreo.laptopshop.service.specification.ProductSpecs;
 
 @Service
 public class ProductService {
@@ -47,6 +48,46 @@ public class ProductService {
 
     public Page<Product> getAllProducts(Pageable pageable) {
         return this.productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getAllProductsByName(Pageable pageable, String name) {
+        return this.productRepository.findAll(ProductSpecs.searchByName(name),
+                pageable);
+    }
+
+    // Case 1
+    public Page<Product> getAllProductsByMinPrice(Pageable pageable, double minPrice) {
+        return this.productRepository.findAll(ProductSpecs.searchByMinPrice(minPrice), pageable);
+    }
+
+    // Case 2
+    public Page<Product> getAllProductsByMaxPrice(Pageable pageable, double maxPrice) {
+        return this.productRepository.findAll(ProductSpecs.searchByMaxPrice(maxPrice), pageable);
+    }
+
+    // Case 3
+    public Page<Product> getAllProductsByFactory(Pageable pageable, String factory) {
+        return this.productRepository.findAll(ProductSpecs.searchByFactory(factory), pageable);
+    }
+
+    // Case 4
+    public Page<Product> getAllProductsByFactorys(Pageable pageable, List<String> factory) {
+        return this.productRepository.findAll(ProductSpecs.searchByFactorys(factory), pageable);
+    }
+
+    // Case 5
+    public Page<Product> getAllProductsByPriceRange(Pageable pageable, String price) {
+        if (price.equals("10-toi-15-trieu")) {
+            double minPrice = 10000000;
+            double maxPrice = 15000000;
+            return this.productRepository.findAll(ProductSpecs.searchByPriceRange(minPrice, maxPrice), pageable);
+        } else if (price.equals("15-toi-30-trieu")) {
+            double minPrice = 15000000;
+            double maxPrice = 30000000;
+            return this.productRepository.findAll(ProductSpecs.searchByPriceRange(minPrice, maxPrice), pageable);
+        } else {
+            return this.productRepository.findAll(pageable);
+        }
     }
 
     /*
