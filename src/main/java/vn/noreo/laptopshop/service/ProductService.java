@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -88,6 +89,52 @@ public class ProductService {
         } else {
             return this.productRepository.findAll(pageable);
         }
+    }
+
+    // Case 6
+    public Page<Product> getAllProductsByPriceRanges(Pageable pageable, List<String> listPriceRange) {
+        Specification<Product> combineSpec = (root, query, criteriaBuilder) -> criteriaBuilder.disjunction();
+        int count = 0;
+        for (String p : listPriceRange) {
+            double minPrice = 0;
+            double maxPrice = 0;
+
+            switch (p) {
+                case "10-toi-15-trieu":
+                    minPrice = 10000000;
+                    maxPrice = 15000000;
+                    count++;
+                    break;
+                case "15-toi-20-trieu":
+                    minPrice = 15000000;
+                    maxPrice = 20000000;
+                    count++;
+                    break;
+                case "20-toi-30-trieu":
+                    minPrice = 20000000;
+                    maxPrice = 30000000;
+                    count++;
+                    break;
+            }
+
+            if (minPrice != 0 && maxPrice != 0) {
+                Specification<Product> rangeSpec = ProductSpecs.searchByPriceRanges(minPrice, maxPrice);
+                combineSpec = combineSpec.or(rangeSpec);
+                /*
+                 * combineSpec = combineSpec.or(rangeSpec);: Dùng or để
+                 * "price-range=15-toi-20-trieu,20-" vẫn chạy dc và chỉ trả ra kết quả trong
+                 * case "15-toi-20-trieu",
+                 * nếu không dùng or thì phải là
+                 * "price-range=15-toi-20-trieu,20-30-trieu" mới chạy dc và trả ra 2 kết quả
+                 * case "15-toi-20-trieu" và "20-toi-30-trieu"
+                 */
+            }
+        }
+
+        if (count == 0) {
+            return this.productRepository.findAll(pageable);
+        }
+        return this.productRepository.findAll(combineSpec, pageable);
     }
 
     /*

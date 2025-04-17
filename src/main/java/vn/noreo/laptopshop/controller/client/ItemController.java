@@ -199,7 +199,11 @@ public class ItemController {
         // Page<Product> products =
         // this.productService.getAllProductsByFactorys(pageable, listFactory);
         // Case 5: search by price range
-        Page<Product> products = this.productService.getAllProductsByPriceRange(pageable, priceRange);
+        // Page<Product> products =
+        // this.productService.getAllProductsByPriceRange(pageable, priceRange);
+        // Case 6: search by list price
+        List<String> listPrice = Arrays.asList(priceRangeOptional.get().split(","));
+        Page<Product> products = this.productService.getAllProductsByPriceRanges(pageable, listPrice);
 
         List<Product> allProducts = products.getContent();
 

@@ -37,4 +37,8 @@ public class ProductSpecs {
                 criteriaBuilder.ge(root.get(Product_.PRICE), minPrice),
                 criteriaBuilder.le(root.get(Product_.PRICE), maxPrice));
     }
+
+    public static Specification<Product> searchByPriceRanges(double minPrice, double maxPrice) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get(Product_.PRICE), minPrice, maxPrice);
+    }
 }
