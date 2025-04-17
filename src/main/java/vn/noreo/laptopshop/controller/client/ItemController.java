@@ -1,9 +1,7 @@
 package vn.noreo.laptopshop.controller.client;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -172,9 +170,7 @@ public class ItemController {
         }
 
         Pageable pageable = PageRequest.of(page - 1, 6);
-
         Page<Product> products = this.productService.getAllProductsWithSpec(pageable, productCriteriaDTO);
-
         List<Product> allProducts = products.getContent();
 
         model.addAttribute("allProducts", allProducts);
