@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import vn.noreo.laptopshop.domain.Cart;
 import vn.noreo.laptopshop.domain.CartDetail;
 import vn.noreo.laptopshop.domain.Order;
 import vn.noreo.laptopshop.domain.Product;
+import vn.noreo.laptopshop.domain.Product_;
 import vn.noreo.laptopshop.domain.User;
 import vn.noreo.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.noreo.laptopshop.service.OrderService;
@@ -159,7 +161,7 @@ public class ItemController {
     }
 
     @GetMapping("/all-products")
-    public String getAllProductsPage(Model model, ProductCriteriaDTO productCriteriaDTO) {
+    public String getAllProductsPage(Model model, ProductCriteriaDTO productCriteriaDTO, HttpServletRequest request) {
 
         int page = 1;
         try {
@@ -169,13 +171,30 @@ public class ItemController {
         } catch (NumberFormatException e) {
         }
 
+        // Check sort
         Pageable pageable = PageRequest.of(page - 1, 6);
+        if (productCriteriaDTO.getSort() != null && productCriteriaDTO.getSort().isPresent()) {
+            String sort = productCriteriaDTO.getSort().get();
+            if (sort.equals("gia-tang-dan")) {
+                pageable = PageRequest.of(page - 1, 6, Sort.by(Product_.PRICE).ascending());
+            } else if (sort.equals("gia-giam-dan")) {
+                pageable = PageRequest.of(page - 1, 6, Sort.by(Product_.PRICE).descending());
+            }
+        }
+
         Page<Product> products = this.productService.getAllProductsWithSpec(pageable, productCriteriaDTO);
         List<Product> allProducts = products.getContent();
+
+        String queryString = request.getQueryString();
+        if (queryString != null && !queryString.isBlank()) {
+            // Remove the page parameter from the query string
+            queryString = queryString.replace("page=" + page, "");
+        }
 
         model.addAttribute("allProducts", allProducts);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("queryString", queryString);
         return "client/product/view-all-products";
     }
 

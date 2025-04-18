@@ -82,7 +82,7 @@ public class ProductService {
     }
 
     public Specification<Product> buildPriceSpec(List<String> listPriceRange) {
-        Specification<Product> combinedSpec = (root, query, criteriaBuilder) -> criteriaBuilder.disjunction();
+        Specification<Product> combinedSpec = Specification.where(null);
 
         for (String p : listPriceRange) {
             double minPrice = 0;
@@ -90,7 +90,7 @@ public class ProductService {
 
             switch (p) {
                 case "duoi-10-trieu":
-                    minPrice = 0;
+                    minPrice = 1;
                     maxPrice = 10000000;
                     break;
                 case "10-15-trieu":

@@ -75,8 +75,7 @@ public class SecurityConfig {
                         .permitAll()
 
                         .requestMatchers("/", "/login", "/register/**", "/product/**", "/client/**", "/css/**",
-                                "/js/**",
-                                "/images/**")
+                                "/js/**", "/images/**", "/all-products/**")
                         .permitAll()
 
                         // hasRole tự động bỏ tiền tố ROLE_ => ROLE_ADMIN = ADMIN

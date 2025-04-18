@@ -34,6 +34,12 @@
 
                     <!-- Template Stylesheet -->
                     <link href="/client/css/style.css" rel="stylesheet">
+
+                    <meta name="_csrf" content="${_csrf.token}" />
+                    <meta name="_csrf_header" content="${_csrf.headerName}" />
+
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+                        rel="stylesheet">
                     <style>
                         .page-link.disabled {
                             color: var(--bs-pagination-disabled-color);
@@ -119,23 +125,22 @@
                                                 </div>
                                             </div>
 
-                                            <form action="/add-product-to-cart-from-product-detail" method="post"
-                                                modelAttribute="currentProduct">
-                                                <input type="hidden" name="${_csrf.parameterName}"
-                                                    value="${_csrf.token}" />
+                                            <!-- <form action="/add-product-to-cart-from-product-detail" method="post"
+                                                modelAttribute="currentProduct"> -->
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-                                                <input class="form-control d-none" type="text" name="id"
-                                                    value="${currentProduct.getId()}">
+                                            <input class="form-control d-none" type="text" name="id"
+                                                value="${currentProduct.getId()}">
 
-                                                <input class="form-control d-none" type="text" name="quantity"
-                                                    id="cartDetails0.quantity">
+                                            <input class="form-control d-none" type="text" name="quantity"
+                                                id="cartDetails0.quantity" value="1">
 
-                                                <button
-                                                    class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                        class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                    Thêm vào giỏ hàng
-                                                </button>
-                                            </form>
+                                            <button data-product-id="${currentProduct.getId()}"
+                                                class="btnAddToCartProductDetail mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                Thêm vào giỏ hàng
+                                            </button>
+                                            <!-- </form> -->
                                         </div>
                                         <div class="col-lg-12">
                                             <nav>
@@ -218,6 +223,8 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
                 </body>
 
                 </html>
